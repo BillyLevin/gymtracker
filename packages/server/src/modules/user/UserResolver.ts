@@ -1,0 +1,112 @@
+import { Query, Resolver, Mutation, Arg, InputType, Field, ObjectType, Ctx } from 'type-graphql';
+import { User } from '../../entity/User';
+import { Error } from '../types/Error';
+import * as argon from 'argon2';
+import { MyContext } from '../types/MyContext';
+import { invalidLoginResponse } from './invalidLoginResponse';
+import { registerSchema } from '@gym-tracker/common';
+import { formatYupError } from '../../utils/formatYupError';
+
+@InputType()
+class UserInput {
+  @Field()
+  email: string;
+
+  @Field()
+  password: string;
+}
+
+@ObjectType({ description: 'response after we register' })
+class RegisterResponse {
+  @Field(() => [Error])
+  errors: Error[];
+}
+
+@ObjectType({ description: 'response after we login' })
+class LoginResponse {
+  @Field(() => User, { nullable: true })
+  user?: User;
+
+  @Field(() => [Error])
+  errors: Error[];
+}
+
+@Resolver(User)
+export class UserResolver {
+  @Query(() => User, { nullable: true })
+  async me(@Ctx() ctx: MyContext) {
+    const { userId } = ctx.req.session!;
+    if (!userId) {
+      return null;
+    }
+
+    const user = await User.findOne(userId);
+
+    if (user) {
+      return user;
+    }
+
+    return null;
+  }
+
+  @Mutation(() => RegisterResponse)
+  async register(@Arg('data') input: UserInput) {
+    try {
+      await registerSchema.validate(input, { abortEarly: false });
+    } catch (err) {
+      return {
+        errors: formatYupError(err),
+      };
+    }
+
+    const { email, password } = input;
+
+    const hashedPassword = await argon.hash(password);
+
+    try {
+      await User.create({
+        email,
+        password: hashedPassword,
+      }).save();
+    } catch (err) {
+      const { detail } = err;
+      if (detail.includes('already exists')) {
+        return {
+          errors: [
+            {
+              path: 'email',
+              message: 'Email already in use',
+            },
+          ],
+        };
+      }
+    }
+    return {
+      errors: [],
+    };
+  }
+
+  @Mutation(() => LoginResponse)
+  async login(@Arg('data') input: UserInput, @Ctx() ctx: MyContext) {
+    const { email, password } = input;
+    const { req } = ctx;
+    const user = await User.findOne({ where: { email } });
+
+    if (!user) {
+      return invalidLoginResponse;
+    }
+
+    const valid = await argon.verify(user.password, password);
+
+    if (!valid) {
+      return invalidLoginResponse;
+    }
+
+    req.session!.userId = user.id;
+
+    return {
+      user,
+      errors: [],
+    };
+  }
+}

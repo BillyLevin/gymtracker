@@ -1,0 +1,20 @@
+@import '../../styles/abstracts/variables';
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2.4rem;
+  width: 100%;
+
+  label {
+    margin-bottom: .8rem;
+    color: $black;
+    font-weight: 500;
+  }
+
+  .error-message {
+    color: $error;
+    font-size: 1.4rem;
+    margin-top: .8rem;
+  }
+}

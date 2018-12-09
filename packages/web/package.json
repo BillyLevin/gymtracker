@@ -1,0 +1,37 @@
+{
+  "name": "@gym-tracker/web",
+  "version": "1.0.0",
+  "description": "Awesome project developed with TypeORM.",
+  "dependencies": {
+    "@gym-tracker/common": "1.0.0",
+    "apollo-boost": "^0.1.22",
+    "apollo-link-context": "^1.0.10",
+    "cookie": "^0.3.1",
+    "formik": "^1.3.2",
+    "isomorphic-unfetch": "^3.0.0",
+    "next": "^7.0.2",
+    "next-routes": "^1.4.2",
+    "node-sass-chokidar": "^1.3.4",
+    "react": "^16.6.3",
+    "react-apollo": "^2.3.2",
+    "react-dom": "^16.6.3"
+  },
+  "scripts": {
+    "dev": "nodemon server/index.ts",
+    "build": "next build",
+    "start": "next start",
+    "type-check": "tsc",
+    "schema:download": "apollo schema:download --endpoint=http://localhost:4000/graphql",
+    "codegen:generate": "apollo codegen:generate ./lib/schema-types.ts --queries=./graphql/**/*.ts --schema=./schema.json --outputFlat --target=typescript",
+    "generate": "npm run schema:download && npm run codegen:generate"
+  },
+  "devDependencies": {
+    "@types/cookie": "^0.3.2",
+    "@types/next": "^7.0.5",
+    "@types/next-server": "^7.0.2",
+    "@zeit/next-sass": "^1.0.1",
+    "@zeit/next-typescript": "^1.1.1",
+    "apollo": "1.9.2",
+    "nodemon": "^1.18.7"
+  }
+}

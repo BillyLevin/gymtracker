@@ -1,0 +1,21 @@
+@import '../../styles/abstracts/variables';
+
+.form-input {
+    padding: 1rem 2rem;
+    border-radius: 3px;
+    border: 2px solid $primary;
+    outline: 0;
+
+    &:focus {
+      border-color: darken($primary, 7);
+    }
+
+    &--error {
+      border-color: $error;
+      background-color: lighten($error, 55);
+
+      &:focus {
+        border-color: lighten($error, 20);
+      }
+    }
+  }
