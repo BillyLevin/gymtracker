@@ -1,6 +1,6 @@
 import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
-import { Me } from './schema-types';
 import { ME_QUERY } from '../graphql/user/query/me';
+import { Me } from './schema-types';
 
 export default async (apolloClient: ApolloClient<NormalizedCacheObject>) => {
   const {
@@ -9,11 +9,11 @@ export default async (apolloClient: ApolloClient<NormalizedCacheObject>) => {
 
   if (me) {
     return {
-      user: me,
+      me,
     };
   }
 
   return {
-    user: null,
+    me: null,
   };
 };

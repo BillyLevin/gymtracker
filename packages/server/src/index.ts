@@ -28,6 +28,19 @@ const startServer = async () => {
     }),
   );
 
+  app.use((req, _, next) => {
+    const authorization = req.headers.authorization;
+
+    if (authorization) {
+      try {
+        const qid = authorization.split(' ')[1];
+        req.headers.cookie = `qid=${qid}`;
+      } catch (_) {}
+    }
+
+    return next();
+  });
+
   app.use(
     session({
       store: new RedisStore({
@@ -51,8 +64,9 @@ const startServer = async () => {
 
   const server = new ApolloServer({
     schema,
-    context: ({ req }: any) => ({
+    context: ({ req, res }: any) => ({
       req,
+      res,
     }),
   });
 

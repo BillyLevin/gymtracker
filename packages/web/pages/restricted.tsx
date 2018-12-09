@@ -1,27 +1,6 @@
 import * as React from 'react';
-// import { NextContextWithApollo } from '../types/NextContextWithApollo';
-// import checkLoggedIn from '../lib/checkLoggedIn';
-// import redirect from '../lib/redirect';
-// import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
-// import { NextContext } from 'next';
+import { withAuth } from '../hocs/withAuth';
 
-class Restricted extends React.Component {
-  static async getInitialProps(ctx: any) {
-    console.log(ctx);
-    // const { user }: any = await checkLoggedIn(apolloClient);
+const Restricted: React.FC = () => <p>hello</p>;
 
-    // if (user) {
-    //   redirect(ctx, '/');
-    // }
-
-    // return {
-    //   user,
-    // };
-    return {};
-  }
-  render() {
-    return <p>hello</p>;
-  }
-}
-
-export default Restricted;
+export default withAuth(Restricted);
