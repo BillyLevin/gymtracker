@@ -32,6 +32,30 @@ export interface LoginMutationVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: RegisterMutation
+// ====================================================
+
+export interface RegisterMutation_register_errors {
+  path: string;
+  message: string;
+}
+
+export interface RegisterMutation_register {
+  errors: RegisterMutation_register_errors[];
+}
+
+export interface RegisterMutation {
+  register: RegisterMutation_register;
+}
+
+export interface RegisterMutationVariables {
+  data: UserInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: Me
 // ====================================================
 

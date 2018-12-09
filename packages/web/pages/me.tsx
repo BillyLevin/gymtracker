@@ -5,7 +5,7 @@ import { ME_QUERY } from '../graphql/user/query/me';
 
 export default () => (
   <Layout title="Me">
-    <Query<Me> query={ME_QUERY} ssr={false}>
+    <Query<Me> query={ME_QUERY}>
       {({ loading, data }) => {
         if (loading) return null;
         return <p>{JSON.stringify(data)}</p>;

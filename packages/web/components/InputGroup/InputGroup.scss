@@ -3,18 +3,19 @@
 .input-group {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2.4rem;
+  margin-bottom: 1.6rem;
   width: 100%;
 
   label {
     margin-bottom: .8rem;
-    color: $black;
-    font-weight: 500;
+    color: $primary;
+    font-weight: 600;
   }
 
   .error-message {
     color: $error;
     font-size: 1.4rem;
     margin-top: .8rem;
+    height: 1.6rem;
   }
 }

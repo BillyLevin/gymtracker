@@ -15,7 +15,7 @@ export const InputGroup: React.FC = ({
     <div className="input-group">
       <label htmlFor={field.name}>{label}</label>
       <FormInput error={hasError} {...props} {...field} />
-      {hasError && <div className="error-message">{capitalizeString(errors[field.name])}</div>}
+      <div className="error-message">{hasError ? capitalizeString(errors[field.name]) : ''}</div>
     </div>
   );
 };
