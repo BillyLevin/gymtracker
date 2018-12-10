@@ -1,0 +1,20 @@
+@import '../../styles//abstracts/variables';
+
+.header {
+  border-bottom: 1px solid $light-grey;
+  background-color: $white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.6rem 3.2rem;
+
+  .logo {
+    width: 12rem;
+    height: auto;
+    margin-left: auto;
+  }
+
+  .btn {
+    margin-left: auto;
+  }
+}

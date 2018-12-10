@@ -2,6 +2,28 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetExercises
+// ====================================================
+
+export interface GetExercises_getExercises_exercises {
+  id: string;
+  name: string;
+  reps: number;
+  sets: number;
+}
+
+export interface GetExercises_getExercises {
+  exercises: GetExercises_getExercises_exercises[];
+}
+
+export interface GetExercises {
+  getExercises: GetExercises_getExercises;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: LoginMutation
 // ====================================================
 

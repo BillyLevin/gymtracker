@@ -15,13 +15,12 @@ body {
   font-size: 1.6rem;
 }
 
-.wrapper {
-  margin: 0 auto;
-  max-width: 120rem;
-  padding: 0 2.4rem;
-  width: 100%;
+
+// weird stuff to make the app full height
+html,
+body,
+body > div:first-child,
+div#__next {
+  height: 100%;
 }
 
-section.section {
-  padding: 9.6rem 0;
-}

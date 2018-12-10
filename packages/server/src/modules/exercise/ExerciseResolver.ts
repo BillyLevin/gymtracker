@@ -1,9 +1,9 @@
-import { Resolver, Mutation, Arg, Ctx } from 'type-graphql';
+import { Resolver, Mutation, Arg, Ctx, Query } from 'type-graphql';
 import { Exercise } from '../../entity/Exercise';
 import { exerciseSchema } from '@gym-tracker/common';
 import { formatYupError } from '../../utils/formatYupError';
 import { User } from '../../entity/User';
-import { CreateExerciseResponse, CreateExerciseInput } from './shared/types';
+import { CreateExerciseResponse, CreateExerciseInput, GetExercisesResponse } from './shared/types';
 import { MyContext } from '../types/MyContext';
 import { isAuthenticated } from '../../middleware';
 
@@ -58,6 +58,25 @@ export class ExerciseResolver {
 
     return {
       errors: [],
+    };
+  }
+
+  @Query(() => GetExercisesResponse)
+  async getExercises(@Ctx() ctx: MyContext) {
+    const { req } = ctx;
+
+    if (!isAuthenticated(req)) {
+      return {
+        exercises: [],
+      };
+    }
+
+    const userId = req.session!.userId;
+
+    const exercises = await Exercise.find({ where: { user: userId } });
+
+    return {
+      exercises,
     };
   }
 }

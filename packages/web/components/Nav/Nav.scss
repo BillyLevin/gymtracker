@@ -1,0 +1,51 @@
+@import '../../styles//abstracts/variables';
+
+.nav {
+  width: 30rem;
+  height: 100%;
+  background-color: $primary;
+  padding: 1.6rem;
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    margin-bottom: 1.6rem;
+    text-align: center;
+  }
+
+  &__link { 
+    text-decoration: none;
+    color: $white;
+    text-transform: uppercase;
+    font-weight: 600;
+    border-bottom: 2px solid transparent;
+    transition: all .3s;
+
+    &:hover,
+    &:active,
+    &:focus {
+      border-bottom: 2px solid $white;
+    }
+  }
+
+  &__header {
+    color: $white;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 2.2rem;
+    margin: 0;
+    margin-bottom: 1.6rem;
+    background-color: $white;
+    color: $primary;
+    border-radius: 3px;
+    padding: 1rem;
+
+    &:not(:first-child) {
+      margin-top: 1.6em;
+    }
+  }
+}

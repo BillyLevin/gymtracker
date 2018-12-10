@@ -1,5 +1,6 @@
 import { InputType, ObjectType, Field } from 'type-graphql';
 import { Error } from '../../types/Error';
+import { Exercise } from '../../../entity/Exercise';
 
 @InputType()
 export class CreateExerciseInput {
@@ -17,4 +18,10 @@ export class CreateExerciseInput {
 export class CreateExerciseResponse {
   @Field(() => [Error])
   errors: Error[];
+}
+
+@ObjectType()
+export class GetExercisesResponse {
+  @Field(() => [Exercise])
+  exercises: Exercise[];
 }

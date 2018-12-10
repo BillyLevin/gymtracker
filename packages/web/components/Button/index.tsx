@@ -5,6 +5,7 @@ import './Button.scss';
 interface Props extends React.HTMLProps<HTMLButtonElement> {
   theme: string;
   disabled?: boolean;
+  children: React.ReactNode;
 }
 
 const Button: React.FC<Props> = ({ disabled, theme, children, ...props }) => (

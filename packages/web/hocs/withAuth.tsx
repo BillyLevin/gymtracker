@@ -13,8 +13,11 @@ export const withAuth = (Page: any) => {
       return {};
     }
 
+    const { id, email } = me;
+
     return {
       ...(Page.getInitialProps ? await Page.getInitialProps(ctx) : {}),
+      me: { id, email },
     };
   };
 
