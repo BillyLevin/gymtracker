@@ -1,35 +1,12 @@
-import { Query, Resolver, Mutation, Arg, InputType, Field, ObjectType, Ctx } from 'type-graphql';
+import { Query, Resolver, Mutation, Arg, Ctx } from 'type-graphql';
 import { User } from '../../entity/User';
-import { Error } from '../types/Error';
+
 import * as argon from 'argon2';
 import { MyContext } from '../types/MyContext';
-import { invalidLoginResponse } from './invalidLoginResponse';
+import { invalidLoginResponse } from './shared/invalidLoginResponse';
 import { registerSchema } from '@gym-tracker/common';
 import { formatYupError } from '../../utils/formatYupError';
-
-@InputType()
-class UserInput {
-  @Field()
-  email: string;
-
-  @Field()
-  password: string;
-}
-
-@ObjectType({ description: 'response after we register' })
-class RegisterResponse {
-  @Field(() => [Error])
-  errors: Error[];
-}
-
-@ObjectType({ description: 'response after we login' })
-class LoginResponse {
-  @Field(() => User, { nullable: true })
-  user?: User;
-
-  @Field(() => [Error])
-  errors: Error[];
-}
+import { RegisterResponse, UserInput, LoginResponse } from './shared/types';
 
 @Resolver(User)
 export class UserResolver {
@@ -80,6 +57,14 @@ export class UserResolver {
           ],
         };
       }
+      return {
+        errors: [
+          {
+            path: 'email',
+            message: 'Something went wrong. Please try again',
+          },
+        ],
+      };
     }
     return {
       errors: [],

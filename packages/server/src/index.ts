@@ -8,6 +8,7 @@ import { createTypeormConnection } from './createTypeormConnection';
 import * as cors from 'cors';
 import * as connectRedis from 'connect-redis';
 import { redis } from './redis';
+import { ExerciseResolver } from './modules/exercise/ExerciseResolver';
 
 // TODO: Move to .env file
 const SESSION_SECRET: string = 'fijfijfijfiiidddvgdyhnjiicdisjcfijdescofjo';
@@ -59,7 +60,7 @@ const startServer = async () => {
   );
 
   const schema = await buildSchema({
-    resolvers: [UserResolver],
+    resolvers: [UserResolver, ExerciseResolver],
   });
 
   const server = new ApolloServer({

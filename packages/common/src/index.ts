@@ -1,2 +1,3 @@
 export * from './yup-schemas/registerSchema';
 export * from './yup-schemas/loginSchema';
+export * from './yup-schemas/exerciseSchema';
