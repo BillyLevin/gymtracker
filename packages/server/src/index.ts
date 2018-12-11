@@ -61,6 +61,9 @@ const startServer = async () => {
 
   const schema = await buildSchema({
     resolvers: [UserResolver, ExerciseResolver],
+    authChecker: ({ context }) => {
+      return context.req.session && context.req.session.userId;
+    },
   });
 
   const server = new ApolloServer({

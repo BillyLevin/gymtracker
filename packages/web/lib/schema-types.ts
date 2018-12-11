@@ -2,6 +2,90 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateExercise
+// ====================================================
+
+export interface CreateExercise_createExercise_exercise {
+  id: string;
+  name: string;
+  sets: number;
+  reps: number;
+  userId: string;
+}
+
+export interface CreateExercise_createExercise_errors {
+  path: string;
+  message: string;
+}
+
+export interface CreateExercise_createExercise {
+  exercise: CreateExercise_createExercise_exercise | null;
+  errors: CreateExercise_createExercise_errors[];
+}
+
+export interface CreateExercise {
+  createExercise: CreateExercise_createExercise;
+}
+
+export interface CreateExerciseVariables {
+  input: CreateExerciseInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: DeleteExercise
+// ====================================================
+
+export interface DeleteExercise_deleteExercise {
+  ok: boolean;
+}
+
+export interface DeleteExercise {
+  deleteExercise: DeleteExercise_deleteExercise;
+}
+
+export interface DeleteExerciseVariables {
+  id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: UpdateExercise
+// ====================================================
+
+export interface UpdateExercise_updateExercise_exercise {
+  id: string;
+  name: string;
+  sets: number;
+  reps: number;
+}
+
+export interface UpdateExercise_updateExercise_errors {
+  path: string;
+  message: string;
+}
+
+export interface UpdateExercise_updateExercise {
+  exercise: UpdateExercise_updateExercise_exercise | null;
+  errors: UpdateExercise_updateExercise_errors[];
+}
+
+export interface UpdateExercise {
+  updateExercise: UpdateExercise_updateExercise;
+}
+
+export interface UpdateExerciseVariables {
+  input: UpdateExerciseInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetExercises
 // ====================================================
 
@@ -10,6 +94,7 @@ export interface GetExercises_getExercises_exercises {
   name: string;
   reps: number;
   sets: number;
+  userId: string;
 }
 
 export interface GetExercises_getExercises {
@@ -96,6 +181,19 @@ export interface Me {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+export interface CreateExerciseInput {
+  name: string;
+  reps: number;
+  sets: number;
+}
+
+export interface UpdateExerciseInput {
+  id: string;
+  name: string;
+  reps: number;
+  sets: number;
+}
 
 export interface UserInput {
   email: string;

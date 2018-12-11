@@ -2,9 +2,11 @@
 
 .nav {
   width: 30rem;
-  height: 100%;
   background-color: $primary;
-  padding: 1.6rem;
+  padding: 2.4rem 1.6rem;
+  min-height: calc(100vh - 10rem);
+  position: fixed;
+  top: 10rem;
 
   &__list {
     list-style: none;
@@ -33,19 +35,29 @@
   }
 
   &__header {
-    color: $white;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 2.2rem;
-    margin: 0;
-    margin-bottom: 1.6rem;
     background-color: $white;
     color: $primary;
     border-radius: 3px;
     padding: 1rem;
+    margin-bottom: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
     &:not(:first-child) {
       margin-top: 1.6em;
+    }
+
+    h3 {
+      margin: 0;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 2.2rem;
+    }
+
+    svg {
+      width: 2.5rem;
+      height: 2.5rem;
     }
   }
 }

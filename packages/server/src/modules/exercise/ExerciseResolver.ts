@@ -1,28 +1,23 @@
-import { Resolver, Mutation, Arg, Ctx, Query } from 'type-graphql';
+import { Resolver, Mutation, Arg, Ctx, Query, Authorized } from 'type-graphql';
 import { Exercise } from '../../entity/Exercise';
 import { exerciseSchema } from '@gym-tracker/common';
 import { formatYupError } from '../../utils/formatYupError';
-import { User } from '../../entity/User';
-import { CreateExerciseResponse, CreateExerciseInput, GetExercisesResponse } from './shared/types';
+import {
+  CreateExerciseResponse,
+  CreateExerciseInput,
+  GetExercisesResponse,
+  DeleteExercisesResponse,
+  UpdateExerciseInput,
+  UpdateExerciseResponse,
+} from './shared/types';
 import { MyContext } from '../types/MyContext';
-import { isAuthenticated } from '../../middleware';
 
 @Resolver(Exercise)
 export class ExerciseResolver {
+  @Authorized()
   @Mutation(() => CreateExerciseResponse)
   async createExercise(@Arg('input') input: CreateExerciseInput, @Ctx() ctx: MyContext) {
     const { req } = ctx;
-
-    if (!isAuthenticated(req)) {
-      return {
-        errors: [
-          {
-            path: 'name',
-            message: 'Not authenticated',
-          },
-        ],
-      };
-    }
 
     try {
       await exerciseSchema.validate(input, { abortEarly: false });
@@ -36,14 +31,14 @@ export class ExerciseResolver {
 
     const userId = req.session!.userId;
 
-    const user = await User.findOne(userId);
+    let exercise = null;
 
     try {
-      await Exercise.create({
+      exercise = await Exercise.create({
         name,
         sets,
         reps,
-        user,
+        userId,
       }).save();
     } catch (_) {
       return {
@@ -57,26 +52,64 @@ export class ExerciseResolver {
     }
 
     return {
+      exercise,
       errors: [],
     };
   }
 
+  @Authorized()
   @Query(() => GetExercisesResponse)
   async getExercises(@Ctx() ctx: MyContext) {
     const { req } = ctx;
 
-    if (!isAuthenticated(req)) {
-      return {
-        exercises: [],
-      };
-    }
-
     const userId = req.session!.userId;
 
-    const exercises = await Exercise.find({ where: { user: userId } });
+    const exercises = await Exercise.find({ where: { userId } });
 
     return {
       exercises,
+    };
+  }
+
+  @Authorized()
+  @Mutation(() => DeleteExercisesResponse)
+  async deleteExercise(@Arg('id') id: string) {
+    try {
+      await Exercise.delete(id);
+    } catch (_) {
+      return {
+        ok: false,
+      };
+    }
+
+    return {
+      ok: true,
+    };
+  }
+
+  @Authorized()
+  @Mutation(() => UpdateExerciseResponse)
+  async updateExercise(@Arg('input') input: UpdateExerciseInput) {
+    const { id, name, sets, reps } = input;
+
+    try {
+      await Exercise.update(id, { name, sets, reps });
+    } catch (_) {
+      return {
+        errors: [
+          {
+            path: 'name',
+            message: 'Something went wrong. Please try again',
+          },
+        ],
+      };
+    }
+
+    const exercise = await Exercise.findOne(id);
+
+    return {
+      exercise,
+      errors: [],
     };
   }
 }

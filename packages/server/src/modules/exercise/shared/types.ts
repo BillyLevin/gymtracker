@@ -14,14 +14,47 @@ export class CreateExerciseInput {
   sets: number;
 }
 
+@InputType()
+export class UpdateExerciseInput {
+  @Field()
+  id: string;
+
+  @Field()
+  name: string;
+
+  @Field()
+  reps: number;
+
+  @Field()
+  sets: number;
+}
+
 @ObjectType({ description: 'response after creating an exercise' })
 export class CreateExerciseResponse {
   @Field(() => [Error])
   errors: Error[];
+
+  @Field(() => Exercise, { nullable: true })
+  exercise?: Exercise;
+}
+
+@ObjectType({ description: 'response after creating an exercise' })
+export class UpdateExerciseResponse {
+  @Field(() => [Error])
+  errors: Error[];
+
+  @Field(() => Exercise, { nullable: true })
+  exercise?: Exercise;
 }
 
 @ObjectType()
 export class GetExercisesResponse {
   @Field(() => [Exercise])
   exercises: Exercise[];
+}
+
+@ObjectType()
+export class DeleteExercisesResponse {
+  @Field(() => Boolean)
+  ok: boolean;
 }

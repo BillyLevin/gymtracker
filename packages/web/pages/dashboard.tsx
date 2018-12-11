@@ -1,7 +1,8 @@
 import DashboardLayout from '../components/DashboardLayout';
+import DashboardHero from '../components/DashboardHero';
 
 export default () => (
   <DashboardLayout title="Dashboard">
-    <p>all the shit will go here!!</p>
+    <DashboardHero welcomeMessage="Welcome Back to GymTracker" />
   </DashboardLayout>
 );

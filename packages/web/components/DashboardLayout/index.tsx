@@ -16,7 +16,7 @@ const DashboardLayout: React.SFC<Props> = ({ title, children }) => (
     <Header />
     <main className="dashboard-content">
       <Nav />
-      {children}
+      <div className="content-container">{children}</div>
     </main>
   </div>
 );

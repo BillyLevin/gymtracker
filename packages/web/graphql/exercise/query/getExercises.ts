@@ -8,6 +8,7 @@ export const GET_EXERCISES_QUERY = gql`
         name
         reps
         sets
+        userId
       }
     }
   }

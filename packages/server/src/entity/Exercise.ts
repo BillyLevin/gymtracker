@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
 import { User } from './User';
 import { ObjectType, ID, Field } from 'type-graphql';
 
@@ -14,14 +14,17 @@ export class Exercise extends BaseEntity {
   name: string;
 
   @Field()
-  @Column()
+  @Column({ type: 'int' })
   reps: number;
 
   @Field()
-  @Column()
+  @Column({ type: 'int' })
   sets: number;
 
+  @Field()
+  @Column('uuid')
+  userId: string;
+
   @ManyToOne(() => User, user => user.exercises)
-  @JoinColumn({ name: 'userId' })
   user: User;
 }

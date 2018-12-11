@@ -1,9 +1,14 @@
+import { FaDumbbell, FaAppleAlt } from 'react-icons/fa';
+
 import './Nav.scss';
 
 const Nav: React.FC = () => (
   <nav className="nav">
     <ul className="nav__list">
-      <h3 className="nav__header">Exercise</h3>
+      <div className="nav__header">
+        <h3>Exercise </h3>
+        <FaDumbbell />
+      </div>
       <li className="nav__item">
         <a href="#" className="nav__link">
           Exercises
@@ -19,7 +24,10 @@ const Nav: React.FC = () => (
           Today
         </a>
       </li>
-      <h3 className="nav__header">Diet</h3>
+      <div className="nav__header">
+        <h3>Diet </h3>
+        <FaAppleAlt />
+      </div>
       <li className="nav__item">
         <a href="#" className="nav__link">
           Ingredients

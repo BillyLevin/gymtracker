@@ -1,20 +1,36 @@
 @import '../../styles//abstracts/variables';
 
 .header {
-  border-bottom: 1px solid $light-grey;
-  background-color: $white;
+  background-color: darken($primary, 10);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 1.6rem 3.2rem;
+  height: 10rem;
+  position: fixed;
+  width: 100%;
+  z-index: 10;
 
   .logo {
     width: 12rem;
     height: auto;
     margin-left: auto;
+
+    g {
+      fill: $white;
+    }
   }
 
   .btn {
     margin-left: auto;
+    background-color: $white;
+    color: $primary;
+    border: 0;
+
+    &:focus,
+    &:active,
+    &:hover {
+      background-color: darken($white, 5);
+    }
   }
 }
