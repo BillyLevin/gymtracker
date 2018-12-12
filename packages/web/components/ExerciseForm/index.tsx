@@ -8,6 +8,7 @@ import { InputGroup } from '../InputGroup';
 import Button from '../Button';
 import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
 import React from 'react';
+import Router from 'next/router';
 
 interface FormValues {
   name: string;
@@ -30,36 +31,9 @@ class ExerciseForm extends React.Component<Props> {
           <Formik<FormValues>
             initialValues={{ name: '', reps: 0, sets: 0 }}
             validationSchema={exerciseSchema}
-            onSubmit={async (input, { setSubmitting, setErrors, resetForm }) => {
+            onSubmit={async (input, { setSubmitting, setErrors }) => {
               const response = await mutate({
                 variables: { input },
-                optimisticResponse: {
-                  createExercise: {
-                    // @ts-ignore
-                    __typename: 'Mutation',
-                    exercise: {
-                      __typename: 'Exercise',
-                      id: new Date().getTime().toString(),
-                      name: input.name,
-                      sets: input.sets,
-                      reps: input.reps,
-                      userId: this.props.me!.id,
-                    },
-                    errors: [],
-                  },
-                },
-                update: (cache, { data }) => {
-                  const { getExercises }: any = cache.readQuery({ query: GET_EXERCISES_QUERY });
-                  const { exercises } = getExercises;
-                  const { exercise } = data!.createExercise;
-
-                  cache.writeQuery({
-                    query: GET_EXERCISES_QUERY,
-                    data: {
-                      getExercises: { __typename: 'Query', exercises: exercises.concat(exercise) },
-                    },
-                  });
-                },
               });
               if (
                 response &&
@@ -70,7 +44,7 @@ class ExerciseForm extends React.Component<Props> {
                 setSubmitting(false);
                 return setErrors(normalizeErrors(response.data.createExercise.errors));
               } else {
-                resetForm();
+                Router.push('/exercises');
               }
             }}
           >

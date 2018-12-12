@@ -3,8 +3,7 @@ import { Query } from 'react-apollo';
 import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
 import { GetExercises } from '../../lib/schema-types';
 import Exercise from '../Exercise';
-
-import './ExerciseList.scss';
+import AddExerciseButton from '../AddExerciseButton';
 
 const ExerciseList: React.FC = () => (
   <Query<GetExercises> query={GET_EXERCISES_QUERY}>
@@ -24,6 +23,7 @@ const ExerciseList: React.FC = () => (
                   <Exercise name={name} sets={sets} reps={reps} id={id} />
                 </React.Fragment>
               ))}
+              <AddExerciseButton />
             </div>
           );
         }
