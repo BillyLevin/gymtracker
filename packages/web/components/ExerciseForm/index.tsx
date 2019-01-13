@@ -1,3 +1,4 @@
+import React from 'react';
 import { Mutation } from 'react-apollo';
 import { CREATE_EXERCISE_MUTATION } from '../../graphql/exercise/mutation/createExercise';
 import { CreateExercise, CreateExerciseVariables, Me, Me_me } from '../../lib/schema-types';
@@ -6,8 +7,6 @@ import { exerciseSchema } from '@gym-tracker/common';
 import { normalizeErrors } from '../../utils/normalizeErrors';
 import { InputGroup } from '../InputGroup';
 import Button from '../Button';
-import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
-import React from 'react';
 import Router from 'next/router';
 
 interface FormValues {

@@ -2,7 +2,7 @@ import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 't
 import { User } from './User';
 import { ObjectType, ID, Field } from 'type-graphql';
 
-@Entity('exercises')
+@Entity()
 @ObjectType()
 export class Exercise extends BaseEntity {
   @Field(() => ID)

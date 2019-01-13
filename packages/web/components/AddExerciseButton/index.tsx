@@ -4,7 +4,7 @@ import { FaPlusCircle } from 'react-icons/fa';
 import './AddExerciseButton.scss';
 
 const AddExerciseButton: React.FC = () => (
-  <Link href="/">
+  <Link href="/create-exercise">
     <a className="add-exercise-link">
       <FaPlusCircle className="add-exercise-icon" />
       <span>New exercise</span>
