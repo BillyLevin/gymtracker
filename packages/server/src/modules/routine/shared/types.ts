@@ -1,4 +1,6 @@
-import { InputType, Field } from 'type-graphql';
+import { Field, ObjectType, InputType } from 'type-graphql';
+import { Error } from '../../types/Error';
+import { Routine } from '../../../entity/Routine';
 import { Exercise } from '../../../entity/Exercise';
 
 @InputType()
@@ -6,6 +8,15 @@ export class CreateRoutineInput {
   @Field()
   name: string;
 
-  @Field()
+  @Field(() => [Exercise])
   exercises: Exercise[];
+}
+
+@ObjectType()
+export class CreateRoutineResponse {
+  @Field(() => [Error])
+  errors: Error[];
+
+  @Field(() => Routine, { nullable: true })
+  routine?: Routine;
 }

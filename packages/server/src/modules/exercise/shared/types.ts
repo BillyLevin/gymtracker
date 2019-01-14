@@ -29,7 +29,7 @@ export class UpdateExerciseInput {
   sets: number;
 }
 
-@ObjectType({ description: 'response after creating an exercise' })
+@ObjectType()
 export class CreateExerciseResponse {
   @Field(() => [Error])
   errors: Error[];
@@ -38,7 +38,7 @@ export class CreateExerciseResponse {
   exercise?: Exercise;
 }
 
-@ObjectType({ description: 'response after creating an exercise' })
+@ObjectType()
 export class UpdateExerciseResponse {
   @Field(() => [Error])
   errors: Error[];

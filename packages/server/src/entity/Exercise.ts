@@ -1,9 +1,10 @@
 import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, ManyToOne } from 'typeorm';
 import { User } from './User';
-import { ObjectType, ID, Field } from 'type-graphql';
+import { ObjectType, ID, Field, InputType } from 'type-graphql';
 
 @Entity()
 @ObjectType()
+@InputType('ExerciseInput')
 export class Exercise extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')

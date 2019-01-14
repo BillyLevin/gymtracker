@@ -9,6 +9,7 @@ import * as cors from 'cors';
 import * as connectRedis from 'connect-redis';
 import { redis } from './redis';
 import { ExerciseResolver } from './modules/exercise/ExerciseResolver';
+import { RoutineResolver } from './modules/routine/RoutineResolver';
 
 // TODO: Move to .env file
 const SESSION_SECRET: string = 'fijfijfijfiiidddvgdyhnjiicdisjcfijdescofjo';
@@ -60,10 +61,11 @@ const startServer = async () => {
   );
 
   const schema = await buildSchema({
-    resolvers: [UserResolver, ExerciseResolver],
+    resolvers: [UserResolver, ExerciseResolver, RoutineResolver],
     authChecker: ({ context }) => {
       return context.req.session && context.req.session.userId;
     },
+    emitSchemaFile: true,
   });
 
   const server = new ApolloServer({
