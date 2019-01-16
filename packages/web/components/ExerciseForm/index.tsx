@@ -1,11 +1,11 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { CREATE_EXERCISE_MUTATION } from '../../graphql/exercise/mutation/createExercise';
-import { CreateExercise, CreateExerciseVariables, Me, Me_me } from '../../lib/schema-types';
+import { CreateExercise, CreateExerciseVariables } from '../../lib/schema-types';
 import { Formik, Field } from 'formik';
 import { exerciseSchema } from '@gym-tracker/common';
 import { normalizeErrors } from '../../utils/normalizeErrors';
-import { InputGroup } from '../InputGroup';
+import InputGroup from '../InputGroup';
 import Button from '../Button';
 import Router from 'next/router';
 

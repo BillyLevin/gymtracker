@@ -65,7 +65,6 @@ const startServer = async () => {
     authChecker: ({ context }) => {
       return context.req.session && context.req.session.userId;
     },
-    emitSchemaFile: true,
   });
 
   const server = new ApolloServer({

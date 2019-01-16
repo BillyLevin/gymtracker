@@ -8,6 +8,9 @@ export class CreateRoutineInput {
   @Field()
   name: string;
 
+  @Field()
+  day: string;
+
   @Field(() => [Exercise])
   exercises: Exercise[];
 }

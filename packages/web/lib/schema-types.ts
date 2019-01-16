@@ -109,6 +109,36 @@ export interface GetExercises {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateRoutine
+// ====================================================
+
+export interface CreateRoutine_createRoutine_routine {
+  id: string;
+  name: string;
+}
+
+export interface CreateRoutine_createRoutine_errors {
+  path: string;
+  message: string;
+}
+
+export interface CreateRoutine_createRoutine {
+  routine: CreateRoutine_createRoutine_routine | null;
+  errors: CreateRoutine_createRoutine_errors[];
+}
+
+export interface CreateRoutine {
+  createRoutine: CreateRoutine_createRoutine;
+}
+
+export interface CreateRoutineVariables {
+  input: CreateRoutineInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: LoginMutation
 // ====================================================
 
@@ -186,6 +216,20 @@ export interface CreateExerciseInput {
   name: string;
   reps: number;
   sets: number;
+}
+
+export interface CreateRoutineInput {
+  name: string;
+  day: string;
+  exercises: ExerciseInput[];
+}
+
+export interface ExerciseInput {
+  id: string;
+  name: string;
+  reps: number;
+  sets: number;
+  userId: string;
 }
 
 export interface UpdateExerciseInput {

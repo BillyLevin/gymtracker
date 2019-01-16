@@ -23,6 +23,10 @@ export class Routine extends BaseEntity {
   name: string;
 
   @Field()
+  @Column()
+  day: string;
+
+  @Field()
   @Column('uuid')
   userId: string;
 

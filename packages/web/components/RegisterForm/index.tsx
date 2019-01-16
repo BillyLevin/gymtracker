@@ -3,7 +3,7 @@ import { RegisterMutation, RegisterMutationVariables } from '../../lib/schema-ty
 import { REGISTER_MUTATION } from '../../graphql/user/mutation/register';
 import { Formik, Field } from 'formik';
 import { registerSchema } from '@gym-tracker/common';
-import { InputGroup } from '../InputGroup';
+import InputGroup from '../InputGroup';
 import Button from '../Button';
 import Router from 'next/router';
 import { normalizeErrors } from '../../utils/normalizeErrors';

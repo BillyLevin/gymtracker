@@ -1,49 +1,23 @@
 import React from 'react';
-import { NextContextWithApollo } from '../types/NextContextWithApollo';
-import checkLoggedIn from '../lib/checkLoggedIn';
-import redirect from '../lib/redirect';
-import { GetExercises, GetExercises_getExercises_exercises } from '../lib/schema-types';
-import { GET_EXERCISES_QUERY } from '../graphql/exercise/query/getExercises';
+import { Me_me, GetExercises_getExercises_exercises } from '../lib/schema-types';
+import DashboardLayout from '../components/DashboardLayout';
+import { FaListUl } from 'react-icons/fa';
+import RoutineForm from '../components/RoutineForm';
+import { withAuthAndExercises } from '../hocs/withAuthAndExercises';
 
 interface Props {
+  me: Me_me;
   exercises: GetExercises_getExercises_exercises[];
 }
 
-class CreateRoutine extends React.Component<Props> {
-  static async getInitialProps({ apolloClient, ...ctx }: NextContextWithApollo) {
-    const { me } = await checkLoggedIn(apolloClient);
-    if (!me) {
-      redirect(ctx, '/login');
-      return {};
-    }
+const CreateRoutine: React.FC<Props> = ({ me, exercises }) => (
+  <DashboardLayout title="Create Routine">
+    <div className="create-routine-container">
+      <h1 className="main-heading">Create a new exercise routine</h1>
+      <FaListUl />
+      <RoutineForm exercises={exercises} />
+    </div>
+  </DashboardLayout>
+);
 
-    const {
-      data: {
-        getExercises: { exercises },
-      },
-    } = await apolloClient.query<GetExercises>({ query: GET_EXERCISES_QUERY });
-
-    return {
-      exercises,
-    };
-  }
-
-  render() {
-    const { exercises } = this.props;
-
-    return (
-      <div>
-        <h1>hello</h1>
-        {exercises.map(exercise => (
-          <div key={exercise.id}>
-            <h3>{exercise.name}</h3>
-            <p>Sets: {exercise.sets}</p>
-            <p>Reps: {exercise.reps}</p>
-          </div>
-        ))}
-      </div>
-    );
-  }
-}
-
-export default CreateRoutine;
+export default withAuthAndExercises(CreateRoutine);

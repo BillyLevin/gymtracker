@@ -18,11 +18,11 @@ export class RoutineResolver {
         errors: formatYupError(err),
       };
     }
-    const { name, exercises } = input;
+    const { name, day, exercises } = input;
     const userId = req.session!.userId;
     let routine = null;
     try {
-      routine = await Routine.create({ name, exercises, userId }).save();
+      routine = await Routine.create({ name, exercises, day, userId }).save();
     } catch (_) {
       return {
         errors: [

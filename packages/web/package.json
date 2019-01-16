@@ -15,7 +15,8 @@
     "react": "^16.6.3",
     "react-apollo": "^2.3.2",
     "react-dom": "^16.6.3",
-    "react-icons": "^3.2.2"
+    "react-icons": "^3.2.2",
+    "react-select": "^2.2.0"
   },
   "scripts": {
     "dev": "nodemon server/index.ts",
@@ -30,6 +31,7 @@
     "@types/cookie": "^0.3.2",
     "@types/next": "^7.0.5",
     "@types/next-server": "^7.0.2",
+    "@types/react-select": "^2.0.11",
     "@zeit/next-sass": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "apollo": "1.9.2",
