@@ -8,6 +8,7 @@ import { normalizeErrors } from '../../utils/normalizeErrors';
 import InputGroup from '../InputGroup';
 import Button from '../Button';
 import Router from 'next/router';
+import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
 
 interface FormValues {
   name: string;
@@ -33,6 +34,29 @@ class ExerciseForm extends React.Component<Props> {
             onSubmit={async (input, { setSubmitting, setErrors }) => {
               const response = await mutate({
                 variables: { input },
+                optimisticResponse: {
+                  createExercise: {
+                    // @ts-ignore
+                    __typename: 'Mutation',
+                    errors: [],
+                    exercise: { name: input.name, sets: input.sets, reps: input.reps },
+                  },
+                },
+                update: cache => {
+                  const {
+                    getExercises: { exercises },
+                  }: any = cache.readQuery({ query: GET_EXERCISES_QUERY });
+                  exercises.push({ name: input.name, sets: input.sets, reps: input.reps });
+                  cache.writeQuery({
+                    query: GET_EXERCISES_QUERY,
+                    data: {
+                      getExercises: {
+                        __typename: 'Query',
+                        exercises,
+                      },
+                    },
+                  });
+                },
               });
               if (
                 response &&

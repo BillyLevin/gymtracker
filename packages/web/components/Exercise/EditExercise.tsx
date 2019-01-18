@@ -6,6 +6,7 @@ import { Formik, Field } from 'formik';
 import InputGroup from '../InputGroup';
 import { exerciseSchema } from '@gym-tracker/common';
 import { normalizeErrors } from '../../utils/normalizeErrors';
+import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
 
 interface Props {
   name: string;
@@ -33,6 +34,14 @@ const EditExercise: React.FC<Props> = ({ name, sets, reps, id, toggleEditState }
                 input: {
                   id,
                   ...input,
+                },
+              },
+              optimisticResponse: {
+                updateExercise: {
+                  // @ts-ignore
+                  __typename: 'Mutation',
+                  errors: [],
+                  exercise: { name, sets, reps },
                 },
               },
             });
