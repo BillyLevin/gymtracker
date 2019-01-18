@@ -23,3 +23,9 @@ export class CreateRoutineResponse {
   @Field(() => Routine, { nullable: true })
   routine?: Routine;
 }
+
+@ObjectType()
+export class GetRoutinesResponse {
+  @Field(() => [Routine])
+  routines: Routine[];
+}

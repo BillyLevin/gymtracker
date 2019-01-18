@@ -67,7 +67,7 @@ export class ExerciseResolver {
     const exercises = await Exercise.find({ where: { userId } });
 
     return {
-      exercises,
+      exercises: exercises || [],
     };
   }
 

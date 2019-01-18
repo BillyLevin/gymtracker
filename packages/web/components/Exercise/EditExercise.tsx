@@ -3,7 +3,7 @@ import { Mutation } from 'react-apollo';
 import { UpdateExercise, UpdateExerciseVariables } from '../../lib/schema-types';
 import { UPDATE_EXERCISE_MUTATION } from '../../graphql/exercise/mutation/updateExercise';
 import { Formik, Field } from 'formik';
-import { InputGroup } from '../InputGroup';
+import InputGroup from '../InputGroup';
 import { exerciseSchema } from '@gym-tracker/common';
 import { normalizeErrors } from '../../utils/normalizeErrors';
 

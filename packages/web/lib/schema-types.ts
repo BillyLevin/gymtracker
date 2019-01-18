@@ -139,6 +139,28 @@ export interface CreateRoutineVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetRoutines
+// ====================================================
+
+export interface GetRoutines_getRoutines_routines {
+  id: string;
+  name: string;
+  day: string;
+  userId: string;
+}
+
+export interface GetRoutines_getRoutines {
+  routines: GetRoutines_getRoutines_routines[];
+}
+
+export interface GetRoutines {
+  getRoutines: GetRoutines_getRoutines;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: LoginMutation
 // ====================================================
 

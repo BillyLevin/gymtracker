@@ -1,7 +1,7 @@
-import { Resolver, Mutation, Arg, Ctx, Authorized } from 'type-graphql';
+import { Resolver, Mutation, Arg, Ctx, Authorized, Query } from 'type-graphql';
 import { routineSchema } from '@gym-tracker/common';
 import { formatYupError } from '../../utils/formatYupError';
-import { CreateRoutineResponse, CreateRoutineInput } from './shared/types';
+import { CreateRoutineResponse, CreateRoutineInput, GetRoutinesResponse } from './shared/types';
 import { Routine } from '../../entity/Routine';
 import { MyContext } from '../types/MyContext';
 
@@ -36,6 +36,20 @@ export class RoutineResolver {
     return {
       routine,
       errors: [],
+    };
+  }
+
+  @Authorized()
+  @Query(() => GetRoutinesResponse)
+  async getRoutines(@Ctx() ctx: MyContext) {
+    const { req } = ctx;
+
+    const userId = req.session!.userId;
+
+    const routines = await Routine.find({ where: { userId } });
+
+    return {
+      routines: routines || [],
     };
   }
 }
