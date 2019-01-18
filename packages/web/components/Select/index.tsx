@@ -3,18 +3,35 @@ import { FieldProps } from 'formik';
 import { Props as ReactSelectProps } from 'react-select/lib/Select';
 import Select from 'react-select';
 
-const SelectComponent: React.FC<ReactSelectProps & FieldProps> = ({
+import './Select.scss';
+
+interface ExtraProps {
+  hasError: boolean;
+}
+
+const SelectComponent: React.FC<ReactSelectProps & FieldProps & ExtraProps> = ({
   options,
   field,
   defaultValue,
   form,
+  hasError,
+  isMulti,
+  isSearchable,
 }) => (
   <Select
     options={options}
     name={field.name}
-    defaultValue={defaultValue}
-    onChange={(option: any) => form.setFieldValue(field.name, option.value)}
-    isSearchable={false}
+    defaultValue={defaultValue || undefined}
+    onChange={
+      isMulti
+        ? (option: any) => form.setFieldValue(field.name, option)
+        : (option: any) => form.setFieldValue(field.name, option.value)
+    }
+    className="react-select-container"
+    classNamePrefix={hasError ? 'react-select react-select--error' : 'react-select'}
+    onMenuClose={() => form.setFieldTouched(field.name)}
+    isMulti={isMulti}
+    isSearchable={isSearchable}
   />
 );
 

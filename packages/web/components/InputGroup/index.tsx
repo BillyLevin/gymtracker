@@ -1,9 +1,7 @@
 import React from 'react';
 import { FormInput } from '../FormInput';
-
 import './InputGroup.scss';
 import { capitalizeString } from '../../utils/capitalizeString';
-import MultiSelect from '../MultiSelect';
 import SelectComponent from '../Select';
 
 interface Props {
@@ -25,9 +23,26 @@ const InputGroup: React.FC<Props> = ({
     <div className="input-group">
       <label htmlFor={field.name}>{label}</label>
       {inputType === 'default' && <FormInput error={hasError} {...props} {...field} />}
-      {inputType === 'multi-select' && <MultiSelect {...props} field={field} form={form} />}
+      {inputType === 'multi-select' && (
+        <SelectComponent
+          {...props}
+          field={field}
+          form={form}
+          hasError={hasError}
+          isMulti={true}
+          isSearchable={false}
+        />
+      )}
+
       {inputType === 'select' && (
-        <SelectComponent defaultValue={defaultValue} {...props} field={field} form={form} />
+        <SelectComponent
+          defaultValue={defaultValue}
+          {...props}
+          field={field}
+          form={form}
+          hasError={hasError}
+          isSearchable={false}
+        />
       )}
       <div className="error-message">{hasError ? capitalizeString(errors[field.name]) : ''}</div>
     </div>

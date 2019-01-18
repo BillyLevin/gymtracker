@@ -1,0 +1,15 @@
+.create-routine-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg.routine-svg {
+    fill: $primary;
+    width: 20rem;
+    height: auto;
+  }
+
+  form {
+    width: 50rem;
+  }
+}

@@ -11,6 +11,7 @@ import InputGroup from '../InputGroup';
 import Button from '../Button';
 import { normalizeErrors } from '../../utils/normalizeErrors';
 import Router from 'next/router';
+import { routineSchema } from '@gym-tracker/common';
 
 interface Exercise extends GetExercises_getExercises_exercises {
   __typename: string;
@@ -46,6 +47,7 @@ const RoutineForm: React.SFC<Props> = ({ exercises }) => (
     {mutate => (
       <Formik<FormValues>
         initialValues={{ name: '', day: 'Monday', exercises: [] }}
+        validationSchema={routineSchema}
         onSubmit={async (input, { setSubmitting, setErrors }) => {
           const { name, day, exercises } = input;
           const exercisesInput = exercises.map(obj => {

@@ -1,0 +1,49 @@
+@import '../../styles/abstracts/variables';
+
+.react-select-container {
+ .react-select__control {
+    border: 2px solid $primary;
+    box-shadow: none;
+
+    &:hover {
+      border: 2px solid $primary;
+    }
+
+    &:focus, &:active {
+      border-color: darken($primary, 7);
+    }
+  }
+  
+  .react-select--error__control {
+    border: 2px solid $error;
+    background-color: lighten($error, 55);
+    box-shadow: none;
+
+    &:hover {
+      border: 2px solid $error;
+    }
+
+    &:focus, &:active {
+      border-color: lighten($error, 20);
+    }
+  }
+
+  .react-select--error__control.react-select--error__control--is-focused {
+    border-color: lighten($error, 20);
+  }
+
+  .react-select__multi-value {
+    color: $white;
+    background-color: $primary;
+
+    .react-select__multi-value__label {
+      color: currentColor;
+    }
+
+    .react-select__multi-value__remove:hover {
+      background-color: $primary;
+      color: $error;
+    }
+
+  }
+}
