@@ -19,6 +19,13 @@ export class RoutineResolver {
       };
     }
     const { name, day, exercises } = input;
+
+    const routineWithDayInput = await Routine.find({ where: { day } });
+
+    if (routineWithDayInput) {
+      await Routine.delete({ day });
+    }
+
     const userId = req.session!.userId;
     let routine = null;
     try {
