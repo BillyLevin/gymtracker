@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
-export const CREATE_ROUTINE_MUTATION = gql`
-  mutation CreateRoutine($input: CreateRoutineInput!) {
-    createRoutine(input: $input) {
+export const GET_ROUTINE_BY_ID_QUERY = gql`
+  query GetRoutineById($id: String!) {
+    getRoutineById(id: $id) {
       routine {
         id
         name

@@ -1,7 +1,13 @@
 import { Resolver, Mutation, Arg, Ctx, Authorized, Query } from 'type-graphql';
 import { routineSchema } from '@gym-tracker/common';
 import { formatYupError } from '../../utils/formatYupError';
-import { CreateRoutineResponse, CreateRoutineInput, GetRoutinesResponse } from './shared/types';
+import {
+  CreateRoutineResponse,
+  CreateRoutineInput,
+  GetRoutinesResponse,
+  GetExercisesByRoutineResponse,
+  GetRoutineByIdResponse,
+} from './shared/types';
 import { Routine } from '../../entity/Routine';
 import { MyContext } from '../types/MyContext';
 
@@ -57,6 +63,49 @@ export class RoutineResolver {
 
     return {
       routines: routines || [],
+    };
+  }
+
+  @Authorized()
+  @Query(() => GetExercisesByRoutineResponse)
+  async getExercisesByRoutine(@Arg('routineId') routineId: string) {
+    let routine = null;
+    let exercises = null;
+
+    try {
+      routine = await Routine.findOne({ where: { id: routineId }, relations: ['exercises'] });
+    } catch (_) {
+      return {
+        errors: [{ path: 'routine', message: 'something went wrong with this routine' }],
+      };
+    }
+
+    if (routine) {
+      exercises = routine.exercises;
+    }
+
+    return {
+      exercises,
+      errors: [],
+    };
+  }
+
+  @Authorized()
+  @Query(() => GetRoutineByIdResponse)
+  async getRoutineById(@Arg('id') id: string) {
+    let routine = null;
+
+    try {
+      routine = await Routine.findOne(id);
+    } catch (_) {
+      return {
+        errors: [{ path: 'routine', message: "couldn't find routine" }],
+      };
+    }
+
+    return {
+      routine,
+      errors: [],
     };
   }
 }

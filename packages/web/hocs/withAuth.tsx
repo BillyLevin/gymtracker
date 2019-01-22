@@ -16,7 +16,7 @@ export const withAuth = (Page: any) => {
     const { id, email } = me;
 
     return {
-      ...(Page.getInitialProps ? await Page.getInitialProps(ctx) : {}),
+      ...(Page.getInitialProps ? await Page.getInitialProps({ apolloClient, ...ctx }) : {}),
       me: { id, email },
     };
   };

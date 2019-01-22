@@ -29,3 +29,21 @@ export class GetRoutinesResponse {
   @Field(() => [Routine])
   routines: Routine[];
 }
+
+@ObjectType()
+export class GetExercisesByRoutineResponse {
+  @Field(() => [Exercise], { nullable: true })
+  exercises?: Exercise[];
+
+  @Field(() => [Error])
+  errors: Error[];
+}
+
+@ObjectType()
+export class GetRoutineByIdResponse {
+  @Field(() => Routine, { nullable: true })
+  routine: Routine;
+
+  @Field(() => [Error])
+  errors: Error[];
+}

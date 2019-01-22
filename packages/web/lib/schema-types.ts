@@ -115,6 +115,7 @@ export interface GetExercises {
 export interface CreateRoutine_createRoutine_routine {
   id: string;
   name: string;
+  day: string;
 }
 
 export interface CreateRoutine_createRoutine_errors {
@@ -133,6 +134,69 @@ export interface CreateRoutine {
 
 export interface CreateRoutineVariables {
   input: CreateRoutineInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetExercisesByRoutine
+// ====================================================
+
+export interface GetExercisesByRoutine_getExercisesByRoutine_exercises {
+  id: string;
+  name: string;
+  sets: number;
+  reps: number;
+}
+
+export interface GetExercisesByRoutine_getExercisesByRoutine_errors {
+  path: string;
+  message: string;
+}
+
+export interface GetExercisesByRoutine_getExercisesByRoutine {
+  exercises: GetExercisesByRoutine_getExercisesByRoutine_exercises[] | null;
+  errors: GetExercisesByRoutine_getExercisesByRoutine_errors[];
+}
+
+export interface GetExercisesByRoutine {
+  getExercisesByRoutine: GetExercisesByRoutine_getExercisesByRoutine;
+}
+
+export interface GetExercisesByRoutineVariables {
+  routineId: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetRoutineById
+// ====================================================
+
+export interface GetRoutineById_getRoutineById_routine {
+  id: string;
+  name: string;
+  day: string;
+}
+
+export interface GetRoutineById_getRoutineById_errors {
+  path: string;
+  message: string;
+}
+
+export interface GetRoutineById_getRoutineById {
+  routine: GetRoutineById_getRoutineById_routine | null;
+  errors: GetRoutineById_getRoutineById_errors[];
+}
+
+export interface GetRoutineById {
+  getRoutineById: GetRoutineById_getRoutineById;
+}
+
+export interface GetRoutineByIdVariables {
+  id: string;
 }
 
 /* tslint:disable */
