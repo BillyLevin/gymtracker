@@ -12,6 +12,12 @@ interface Props {
   action: string;
 }
 
+const getPageTitle = (action: string): string => {
+  if (action === 'view') return 'View Routine';
+  if (action === 'edit') return 'Edit Routine';
+  return 'Your Routines';
+};
+
 class Routines extends React.Component<Props> {
   static async getInitialProps({ query: { action, id }, apolloClient }: NextContextWithApollo) {
     let routine = null;
@@ -32,7 +38,7 @@ class Routines extends React.Component<Props> {
   render() {
     const { action, routine } = this.props;
     return (
-      <DashboardLayout title="Your Routines">
+      <DashboardLayout title={getPageTitle(action)}>
         <div className="routines-container">
           {action === 'view' && routine && <RoutineView routine={routine} />}
           {(action === 'all' || !routine) && (
