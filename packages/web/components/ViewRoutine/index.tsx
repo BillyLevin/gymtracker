@@ -3,7 +3,7 @@ import { GetRoutineById_getRoutineById_routine } from '../../lib/schema-types';
 import { Query } from 'react-apollo';
 import { GET_EXERCISES_BY_ROUTINE } from '../../graphql/routine/query/getExercisesByRoutine';
 import { GetExercisesByRoutine } from '../../lib/schema-types';
-import './RoutineView.scss';
+import './ViewRoutine.scss';
 import { FaRunning, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 import Button from '../Button';
 import Link from 'next/link';
@@ -12,7 +12,7 @@ interface Props {
   routine: GetRoutineById_getRoutineById_routine;
 }
 
-const RoutineView: React.FC<Props> = ({ routine: { name, id } }) => (
+const ViewRoutine: React.FC<Props> = ({ routine: { name, id } }) => (
   <Query<GetExercisesByRoutine> query={GET_EXERCISES_BY_ROUTINE} variables={{ routineId: id }}>
     {({ data, loading }) => {
       if (loading) {
@@ -53,7 +53,7 @@ const RoutineView: React.FC<Props> = ({ routine: { name, id } }) => (
                   View all routines
                 </Button>
               </Link>
-              <Link href="/routines">
+              <Link href={`/routines/edit/${id}`}>
                 <Button theme="primary" type="button">
                   Edit this routine
                   <span>
@@ -69,4 +69,4 @@ const RoutineView: React.FC<Props> = ({ routine: { name, id } }) => (
   </Query>
 );
 
-export default RoutineView;
+export default ViewRoutine;

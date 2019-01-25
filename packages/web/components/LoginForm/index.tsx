@@ -1,12 +1,12 @@
-import { Mutation } from 'react-apollo';
-import { Formik, Field } from 'formik';
-import { LoginMutation, LoginMutationVariables } from '../../lib/schema-types';
-import { InputGroup } from '../InputGroup';
-import Button from '../Button';
 import { loginSchema } from '@gym-tracker/common';
-import { normalizeErrors } from '../../utils/normalizeErrors';
+import { Field, Formik } from 'formik';
 import Router from 'next/router';
+import { Mutation } from 'react-apollo';
 import { LOGIN_MUTATION } from '../../graphql/user/mutation/login';
+import { LoginMutation, LoginMutationVariables } from '../../lib/schema-types';
+import { normalizeErrors } from '../../utils/normalizeErrors';
+import Button from '../Button';
+import InputGroup from '../InputGroup';
 
 interface FormValues {
   email: string;

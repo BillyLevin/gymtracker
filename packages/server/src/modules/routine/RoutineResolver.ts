@@ -1,15 +1,17 @@
-import { Resolver, Mutation, Arg, Ctx, Authorized, Query } from 'type-graphql';
 import { routineSchema } from '@gym-tracker/common';
+import { Arg, Authorized, Ctx, Mutation, Query, Resolver } from 'type-graphql';
+import { Routine } from '../../entity/Routine';
 import { formatYupError } from '../../utils/formatYupError';
+import { MyContext } from '../types/MyContext';
 import {
-  CreateRoutineResponse,
   CreateRoutineInput,
-  GetRoutinesResponse,
+  CreateRoutineResponse,
   GetExercisesByRoutineResponse,
   GetRoutineByIdResponse,
+  GetRoutinesResponse,
+  UpdateRoutineInput,
+  UpdateRoutineResponse,
 } from './shared/types';
-import { Routine } from '../../entity/Routine';
-import { MyContext } from '../types/MyContext';
 
 @Resolver(Routine)
 export class RoutineResolver {
@@ -26,6 +28,7 @@ export class RoutineResolver {
     }
     const { name, day, exercises } = input;
 
+    // make sure we only have one routine per day
     const routineWithDayInput = await Routine.find({ where: { day } });
 
     if (routineWithDayInput) {
@@ -101,6 +104,42 @@ export class RoutineResolver {
       return {
         errors: [{ path: 'routine', message: "couldn't find routine" }],
       };
+    }
+
+    return {
+      routine,
+      errors: [],
+    };
+  }
+
+  @Authorized()
+  @Mutation(() => UpdateRoutineResponse)
+  async updateRoutine(@Arg('input') input: UpdateRoutineInput) {
+    const { id, name, day, exercises } = input;
+
+    const oldRoutine = await Routine.findOne(id);
+
+    if (!oldRoutine) {
+      return { errors: [{ path: 'routine', message: 'Failed to update. Please try again' }] };
+    }
+
+    let routine = null;
+
+    oldRoutine.name = name;
+    oldRoutine.day = day;
+    oldRoutine.exercises = exercises;
+
+    try {
+      routine = await Routine.save(oldRoutine);
+    } catch (_) {
+      return { errors: [{ path: 'routine', message: 'Failed to update. Please try again' }] };
+    }
+
+    // make sure we only have one routine per day
+    const routineWithDayInput = await Routine.find({ where: { day } });
+
+    if (routineWithDayInput) {
+      await Routine.delete({ day });
     }
 
     return {

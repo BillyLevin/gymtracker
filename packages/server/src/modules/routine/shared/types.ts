@@ -1,7 +1,7 @@
-import { Field, ObjectType, InputType } from 'type-graphql';
-import { Error } from '../../types/Error';
-import { Routine } from '../../../entity/Routine';
+import { Field, InputType, ObjectType } from 'type-graphql';
 import { Exercise } from '../../../entity/Exercise';
+import { Routine } from '../../../entity/Routine';
+import { Error } from '../../types/Error';
 
 @InputType()
 export class CreateRoutineInput {
@@ -46,4 +46,19 @@ export class GetRoutineByIdResponse {
 
   @Field(() => [Error])
   errors: Error[];
+}
+
+@ObjectType()
+export class UpdateRoutineResponse {
+  @Field(() => [Error])
+  errors: Error[];
+
+  @Field(() => Exercise, { nullable: true })
+  routine?: Routine;
+}
+
+@InputType()
+export class UpdateRoutineInput extends CreateRoutineInput {
+  @Field()
+  id: string;
 }

@@ -1,11 +1,12 @@
 import React from 'react';
 import DashboardLayout from '../components/DashboardLayout';
-import { withAuth } from '../hocs/withAuth';
+import EditRoutine from '../components/EditRoutine';
 import RoutineList from '../components/RoutineList';
-import { NextContextWithApollo } from '../types/NextContextWithApollo';
+import ViewRoutine from '../components/ViewRoutine';
 import { GET_ROUTINE_BY_ID_QUERY } from '../graphql/routine/query/getRoutineById';
+import { withAuth } from '../hocs/withAuth';
 import { GetRoutineById, GetRoutineById_getRoutineById_routine } from '../lib/schema-types';
-import RoutineView from '../components/RoutineView';
+import { NextContextWithApollo } from '../types/NextContextWithApollo';
 
 interface Props {
   routine?: GetRoutineById_getRoutineById_routine;
@@ -40,7 +41,8 @@ class Routines extends React.Component<Props> {
     return (
       <DashboardLayout title={getPageTitle(action)}>
         <div className="routines-container">
-          {action === 'view' && routine && <RoutineView routine={routine} />}
+          {action === 'view' && routine && <ViewRoutine routine={routine} />}
+          {action === 'edit' && routine && <EditRoutine routine={routine} />}
           {(action === 'all' || !routine) && (
             <React.Fragment>
               <h1 className="main-heading">Your Routines</h1>
