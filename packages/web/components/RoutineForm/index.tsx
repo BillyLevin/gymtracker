@@ -1,20 +1,20 @@
+import { routineSchema } from '@gym-tracker/common';
+import { Field, Formik } from 'formik';
+import Router from 'next/router';
 import React from 'react';
 import { Mutation } from 'react-apollo';
+import { CREATE_ROUTINE_MUTATION } from '../../graphql/routine/mutation/createRoutineMutation';
 import {
   CreateRoutine,
   CreateRoutineVariables,
   GetExercises_getExercises_exercises,
 } from '../../lib/schema-types';
-import { Formik, Field } from 'formik';
-import { CREATE_ROUTINE_MUTATION } from '../../graphql/routine/mutation/createRoutineMutation';
-import InputGroup from '../InputGroup';
-import Button from '../Button';
 import { normalizeErrors } from '../../utils/normalizeErrors';
-import Router from 'next/router';
-import { routineSchema } from '@gym-tracker/common';
+import Button from '../Button';
+import InputGroup from '../InputGroup';
 
 interface Exercise extends GetExercises_getExercises_exercises {
-  __typename: string;
+  __typename?: string;
 }
 
 interface FormValues {
@@ -80,7 +80,7 @@ const RoutineForm: React.SFC<Props> = ({ exercises }) => (
               component={InputGroup}
               options={dayOptions}
               inputType="select"
-              defaultValue={{ label: 'Monday', value: 'monday' }}
+              defaultValue={{ label: 'Monday', value: 'Monday' }}
             />
             <Field
               name="exercises"

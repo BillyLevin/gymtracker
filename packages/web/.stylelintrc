@@ -1,0 +1,8 @@
+{
+  "extends": "stylelint-config-sass-guidelines",
+  "defaultSeverity": "warning",
+  "rules": {
+    "max-nesting-depth": null,
+   "selector-no-qualifying-type": null, 
+  }
+}

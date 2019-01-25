@@ -8,6 +8,7 @@ export const GET_EXERCISES_BY_ROUTINE = gql`
         name
         sets
         reps
+        userId
       }
       errors {
         path

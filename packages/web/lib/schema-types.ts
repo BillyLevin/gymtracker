@@ -140,6 +140,37 @@ export interface CreateRoutineVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: UpdateRoutine
+// ====================================================
+
+export interface UpdateRoutine_updateRoutine_routine {
+  id: string;
+  name: string;
+  day: string;
+}
+
+export interface UpdateRoutine_updateRoutine_errors {
+  path: string;
+  message: string;
+}
+
+export interface UpdateRoutine_updateRoutine {
+  routine: UpdateRoutine_updateRoutine_routine | null;
+  errors: UpdateRoutine_updateRoutine_errors[];
+}
+
+export interface UpdateRoutine {
+  updateRoutine: UpdateRoutine_updateRoutine;
+}
+
+export interface UpdateRoutineVariables {
+  input: UpdateRoutineInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetExercisesByRoutine
 // ====================================================
 
@@ -323,6 +354,13 @@ export interface UpdateExerciseInput {
   name: string;
   reps: number;
   sets: number;
+}
+
+export interface UpdateRoutineInput {
+  name: string;
+  day: string;
+  exercises: ExerciseInput[];
+  id: string;
 }
 
 export interface UserInput {

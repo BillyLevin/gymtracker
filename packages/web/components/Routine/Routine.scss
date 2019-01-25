@@ -3,26 +3,26 @@
 .routine {
   border: 2px solid $primary;
   border-radius: 3px;
-  margin: 0 1.6rem 3.2rem 1.6rem;
+  margin: 0 1.6rem 3.2rem;
   width: 100%;
 
   .routine-day {
     background-color: $primary;
     color: $white;
-    font-weight: 400; 
-    padding: 1.6rem;
+    font-weight: 400;
     margin: 0;
+    padding: 1.6rem;
   }
 
   .routine-info {
     display: flex;
-    padding: 1.6rem;
-    margin: 0;
     font-weight: 400;
+    margin: 0;
+    padding: 1.6rem;
 
     span {
-      font-weight: 600;
       color: $primary;
+      font-weight: 600;
     }
   }
 
@@ -34,18 +34,18 @@
 
   .routine-link:link,
   .routine-link:visited {
-    display: block;
-    margin-left: auto;
-    color: $primary;
-    text-decoration: none;
-    font-size: 1.6rem;
     border-bottom: 1px solid transparent;
-    transition: all .2s;
+    color: $primary;
+    display: block;
+    font-size: 1.6rem;
+    margin-left: auto;
+    text-decoration: none;
+    transition: all 0.2s;
   }
 
   .routine-link:active,
   .routine-link:focus,
   .routine-link:hover {
-    border-bottom: 1px solid $primary
+    border-bottom: 1px solid $primary;
   }
 }

@@ -1,0 +1,11 @@
+# css
+src/**/*.css
+# sass
+static/assets/styles/**/*.scss
+static/assets/styles/main.scss
+# dependencies
+/node_modules
+# testing
+/coverage
+# production
+/build

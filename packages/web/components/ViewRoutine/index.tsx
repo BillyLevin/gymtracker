@@ -1,12 +1,14 @@
-import React from 'react';
-import { GetRoutineById_getRoutineById_routine } from '../../lib/schema-types';
-import { Query } from 'react-apollo';
-import { GET_EXERCISES_BY_ROUTINE } from '../../graphql/routine/query/getExercisesByRoutine';
-import { GetExercisesByRoutine } from '../../lib/schema-types';
-import './ViewRoutine.scss';
-import { FaRunning, FaArrowLeft, FaArrowRight } from 'react-icons/fa';
-import Button from '../Button';
 import Link from 'next/link';
+import React from 'react';
+import { Query } from 'react-apollo';
+import { FaArrowLeft, FaArrowRight, FaRunning } from 'react-icons/fa';
+import { GET_EXERCISES_BY_ROUTINE } from '../../graphql/routine/query/getExercisesByRoutine';
+import {
+  GetExercisesByRoutine,
+  GetRoutineById_getRoutineById_routine,
+} from '../../lib/schema-types';
+import Button from '../Button';
+import './ViewRoutine.scss';
 
 interface Props {
   routine: GetRoutineById_getRoutineById_routine;
@@ -53,14 +55,19 @@ const ViewRoutine: React.FC<Props> = ({ routine: { name, id } }) => (
                   View all routines
                 </Button>
               </Link>
-              <Link href={`/routines/edit/${id}`}>
-                <Button theme="primary" type="button">
-                  Edit this routine
-                  <span>
-                    <FaArrowRight />
-                  </span>
+              <div className="right-buttons">
+                <Button theme="delete" type="button">
+                  Delete Routine
                 </Button>
-              </Link>
+                <Link href={`/routines/edit/${id}`}>
+                  <Button theme="primary" type="button">
+                    Edit Routine
+                    <span>
+                      <FaArrowRight />
+                    </span>
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         );

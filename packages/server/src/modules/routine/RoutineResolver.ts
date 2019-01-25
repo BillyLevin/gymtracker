@@ -115,6 +115,7 @@ export class RoutineResolver {
   @Authorized()
   @Mutation(() => UpdateRoutineResponse)
   async updateRoutine(@Arg('input') input: UpdateRoutineInput) {
+    console.log('running');
     const { id, name, day, exercises } = input;
 
     const oldRoutine = await Routine.findOne(id);
@@ -125,6 +126,13 @@ export class RoutineResolver {
 
     let routine = null;
 
+    // make sure we only have one routine per day
+    const routineWithDayInput = await Routine.find({ where: { day } });
+
+    if (routineWithDayInput) {
+      await Routine.delete({ day });
+    }
+
     oldRoutine.name = name;
     oldRoutine.day = day;
     oldRoutine.exercises = exercises;
@@ -133,13 +141,6 @@ export class RoutineResolver {
       routine = await Routine.save(oldRoutine);
     } catch (_) {
       return { errors: [{ path: 'routine', message: 'Failed to update. Please try again' }] };
-    }
-
-    // make sure we only have one routine per day
-    const routineWithDayInput = await Routine.find({ where: { day } });
-
-    if (routineWithDayInput) {
-      await Routine.delete({ day });
     }
 
     return {

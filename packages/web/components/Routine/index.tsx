@@ -1,10 +1,9 @@
+import Link from 'next/link';
 import React from 'react';
-import './Routine.scss';
 import { Query } from 'react-apollo';
 import { GET_EXERCISES_BY_ROUTINE } from '../../graphql/routine/query/getExercisesByRoutine';
 import { GetExercisesByRoutine } from '../../lib/schema-types';
-import Button from '../Button';
-import Link from 'next/link';
+import './Routine.scss';
 
 interface Props {
   name?: string;

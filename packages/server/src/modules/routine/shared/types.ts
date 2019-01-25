@@ -53,7 +53,7 @@ export class UpdateRoutineResponse {
   @Field(() => [Error])
   errors: Error[];
 
-  @Field(() => Exercise, { nullable: true })
+  @Field(() => Routine, { nullable: true })
   routine?: Routine;
 }
 

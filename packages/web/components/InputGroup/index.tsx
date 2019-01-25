@@ -1,8 +1,8 @@
 import React from 'react';
-import { FormInput } from '../FormInput';
-import './InputGroup.scss';
 import { capitalizeString } from '../../utils/capitalizeString';
+import { FormInput } from '../FormInput';
 import SelectComponent from '../Select';
+import './InputGroup.scss';
 
 interface Props {
   inputType?: string;
@@ -31,6 +31,7 @@ const InputGroup: React.FC<Props> = ({
           hasError={hasError}
           isMulti={true}
           isSearchable={false}
+          defaultValue={defaultValue}
         />
       )}
 
