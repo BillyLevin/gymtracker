@@ -62,3 +62,9 @@ export class UpdateRoutineInput extends CreateRoutineInput {
   @Field()
   id: string;
 }
+
+@ObjectType()
+export class DeleteRoutineResponse {
+  @Field(() => Boolean)
+  ok: boolean;
+}

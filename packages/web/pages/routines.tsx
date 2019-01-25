@@ -5,6 +5,7 @@ import RoutineList from '../components/RoutineList';
 import ViewRoutine from '../components/ViewRoutine';
 import { GET_ROUTINE_BY_ID_QUERY } from '../graphql/routine/query/getRoutineById';
 import { withAuth } from '../hocs/withAuth';
+import redirect from '../lib/redirect';
 import { GetRoutineById, GetRoutineById_getRoutineById_routine } from '../lib/schema-types';
 import { NextContextWithApollo } from '../types/NextContextWithApollo';
 
@@ -20,7 +21,11 @@ const getPageTitle = (action: string): string => {
 };
 
 class Routines extends React.Component<Props> {
-  static async getInitialProps({ query: { action, id }, apolloClient }: NextContextWithApollo) {
+  static async getInitialProps({
+    query: { action, id },
+    apolloClient,
+    ...ctx
+  }: NextContextWithApollo) {
     let routine = null;
 
     if (action && id) {
@@ -31,6 +36,11 @@ class Routines extends React.Component<Props> {
 
       if (response && response.data && response.data.getRoutineById.routine) {
         routine = response.data.getRoutineById.routine;
+      }
+
+      if (!routine) {
+        redirect(ctx, '/routines');
+        return { action: 'all', routine: undefined };
       }
     }
 

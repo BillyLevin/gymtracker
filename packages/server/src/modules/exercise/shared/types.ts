@@ -1,6 +1,6 @@
-import { InputType, ObjectType, Field } from 'type-graphql';
-import { Error } from '../../types/Error';
+import { Field, InputType, ObjectType } from 'type-graphql';
 import { Exercise } from '../../../entity/Exercise';
+import { Error } from '../../types/Error';
 
 @InputType()
 export class CreateExerciseInput {
@@ -54,7 +54,7 @@ export class GetExercisesResponse {
 }
 
 @ObjectType()
-export class DeleteExercisesResponse {
+export class DeleteExerciseResponse {
   @Field(() => Boolean)
   ok: boolean;
 }

@@ -1,16 +1,16 @@
-import { Resolver, Mutation, Arg, Ctx, Query, Authorized } from 'type-graphql';
-import { Exercise } from '../../entity/Exercise';
 import { exerciseSchema } from '@gym-tracker/common';
+import { Arg, Authorized, Ctx, Mutation, Query, Resolver } from 'type-graphql';
+import { Exercise } from '../../entity/Exercise';
 import { formatYupError } from '../../utils/formatYupError';
+import { MyContext } from '../types/MyContext';
 import {
-  CreateExerciseResponse,
   CreateExerciseInput,
+  CreateExerciseResponse,
+  DeleteExerciseResponse,
   GetExercisesResponse,
-  DeleteExercisesResponse,
   UpdateExerciseInput,
   UpdateExerciseResponse,
 } from './shared/types';
-import { MyContext } from '../types/MyContext';
 
 @Resolver(Exercise)
 export class ExerciseResolver {
@@ -72,7 +72,7 @@ export class ExerciseResolver {
   }
 
   @Authorized()
-  @Mutation(() => DeleteExercisesResponse)
+  @Mutation(() => DeleteExerciseResponse)
   async deleteExercise(@Arg('id') id: string) {
     try {
       await Exercise.delete(id);

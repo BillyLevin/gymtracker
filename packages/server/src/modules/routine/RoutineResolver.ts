@@ -6,6 +6,7 @@ import { MyContext } from '../types/MyContext';
 import {
   CreateRoutineInput,
   CreateRoutineResponse,
+  DeleteRoutineResponse,
   GetExercisesByRoutineResponse,
   GetRoutineByIdResponse,
   GetRoutinesResponse,
@@ -146,6 +147,22 @@ export class RoutineResolver {
     return {
       routine,
       errors: [],
+    };
+  }
+
+  @Authorized()
+  @Mutation(() => DeleteRoutineResponse)
+  async deleteRoutine(@Arg('id') id: string) {
+    try {
+      await Routine.delete(id);
+    } catch (_) {
+      return {
+        ok: false,
+      };
+    }
+
+    return {
+      ok: true,
     };
   }
 }

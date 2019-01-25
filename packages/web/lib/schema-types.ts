@@ -140,6 +140,25 @@ export interface CreateRoutineVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: DeleteRoutine
+// ====================================================
+
+export interface DeleteRoutine_deleteRoutine {
+  ok: boolean;
+}
+
+export interface DeleteRoutine {
+  deleteRoutine: DeleteRoutine_deleteRoutine;
+}
+
+export interface DeleteRoutineVariables {
+  id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: UpdateRoutine
 // ====================================================
 
@@ -179,6 +198,7 @@ export interface GetExercisesByRoutine_getExercisesByRoutine_exercises {
   name: string;
   sets: number;
   reps: number;
+  userId: string;
 }
 
 export interface GetExercisesByRoutine_getExercisesByRoutine_errors {

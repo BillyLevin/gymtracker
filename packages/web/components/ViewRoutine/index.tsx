@@ -1,9 +1,13 @@
 import Link from 'next/link';
+import Router from 'next/router';
 import React from 'react';
-import { Query } from 'react-apollo';
+import { Mutation, Query } from 'react-apollo';
 import { FaArrowLeft, FaArrowRight, FaRunning } from 'react-icons/fa';
+import { DELETE_ROUTINE_MUTATION } from '../../graphql/routine/mutation/deleteRoutine';
 import { GET_EXERCISES_BY_ROUTINE } from '../../graphql/routine/query/getExercisesByRoutine';
 import {
+  DeleteRoutine,
+  DeleteRoutineVariables,
   GetExercisesByRoutine,
   GetRoutineById_getRoutineById_routine,
 } from '../../lib/schema-types';
@@ -56,9 +60,21 @@ const ViewRoutine: React.FC<Props> = ({ routine: { name, id } }) => (
                 </Button>
               </Link>
               <div className="right-buttons">
-                <Button theme="delete" type="button">
-                  Delete Routine
-                </Button>
+                <Mutation<DeleteRoutine, DeleteRoutineVariables> mutation={DELETE_ROUTINE_MUTATION}>
+                  {mutate => (
+                    <Button
+                      theme="delete"
+                      type="button"
+                      onClick={async () => {
+                        await mutate({ variables: { id } });
+                        Router.push('/routines');
+                      }}
+                    >
+                      Delete Routine
+                    </Button>
+                  )}
+                </Mutation>
+
                 <Link href={`/routines/edit/${id}`}>
                   <Button theme="primary" type="button">
                     Edit Routine
