@@ -2,7 +2,6 @@
 
 @import 'base/base', 'base/fonts', 'base/normalize', 'base/typography';
 
-@import 'components/forms';
+@import 'components/form-page';
 
-@import 'pages/create-exercise', 'pages/create-routine', 'pages/exercises', 'pages/login';
-
+@import 'pages/exercises', 'pages/login';

@@ -1,14 +1,14 @@
+import { exerciseSchema } from '@gym-tracker/common';
+import { Field, Formik } from 'formik';
+import Router from 'next/router';
 import React from 'react';
 import { Mutation } from 'react-apollo';
 import { CREATE_EXERCISE_MUTATION } from '../../graphql/exercise/mutation/createExercise';
-import { CreateExercise, CreateExerciseVariables } from '../../lib/schema-types';
-import { Formik, Field } from 'formik';
-import { exerciseSchema } from '@gym-tracker/common';
-import { normalizeErrors } from '../../utils/normalizeErrors';
-import InputGroup from '../InputGroup';
-import Button from '../Button';
-import Router from 'next/router';
 import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
+import { CreateExercise, CreateExerciseVariables } from '../../lib/schema-types';
+import { normalizeErrors } from '../../utils/normalizeErrors';
+import Button from '../Button';
+import InputGroup from '../InputGroup';
 
 interface FormValues {
   name: string;
@@ -16,14 +16,7 @@ interface FormValues {
   sets: number;
 }
 
-interface Props {
-  me: {
-    id: string;
-    email: string;
-  } | null;
-}
-
-class ExerciseForm extends React.Component<Props> {
+class ExerciseForm extends React.Component {
   render() {
     return (
       <Mutation<CreateExercise, CreateExerciseVariables> mutation={CREATE_EXERCISE_MUTATION}>
@@ -72,7 +65,7 @@ class ExerciseForm extends React.Component<Props> {
             }}
           >
             {({ handleSubmit, isSubmitting }) => (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} className="form">
                 <Field
                   name="name"
                   placeholder="Exercise name"

@@ -71,7 +71,7 @@ const RoutineForm: React.SFC<Props> = ({ exercises }) => (
         }}
       >
         {({ handleSubmit, isSubmitting, values }) => (
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="form">
             <Field name="name" placeholder="Routine name" label="Name" component={InputGroup} />
             <Field
               name="day"

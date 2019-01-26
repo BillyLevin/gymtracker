@@ -1,20 +1,15 @@
 import React from 'react';
-import ExerciseForm from '../components/ExerciseForm';
-import { Me_me } from '../lib/schema-types';
-import { withAuth } from '../hocs/withAuth';
-import DashboardLayout from '../components/DashboardLayout';
 import { FaDumbbell } from 'react-icons/fa';
+import DashboardLayout from '../components/DashboardLayout';
+import ExerciseForm from '../components/ExerciseForm';
+import { withAuth } from '../hocs/withAuth';
 
-interface Props {
-  me: Me_me;
-}
-
-const CreateExercise: React.FC<Props> = ({ me }) => (
+const CreateExercise: React.FC = () => (
   <DashboardLayout title="Create Exercise">
-    <div className="create-exercise-container">
+    <div className="form-page-container">
       <h1 className="main-heading">Add a new exercise to your collection</h1>
-      <FaDumbbell />
-      <ExerciseForm me={me} />
+      <FaDumbbell className="main-svg" />
+      <ExerciseForm />
     </div>
   </DashboardLayout>
 );
