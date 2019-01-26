@@ -1,15 +1,16 @@
-import 'reflect-metadata';
 import { ApolloServer } from 'apollo-server-express';
+import * as connectRedis from 'connect-redis';
+import * as cors from 'cors';
 import * as express from 'express';
 import * as session from 'express-session';
+import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
-import { UserResolver } from './modules/user/UserResolver';
 import { createTypeormConnection } from './createTypeormConnection';
-import * as cors from 'cors';
-import * as connectRedis from 'connect-redis';
-import { redis } from './redis';
 import { ExerciseResolver } from './modules/exercise/ExerciseResolver';
+import { IngredientResolver } from './modules/ingredient/IngredientResolver';
 import { RoutineResolver } from './modules/routine/RoutineResolver';
+import { UserResolver } from './modules/user/UserResolver';
+import { redis } from './redis';
 
 // TODO: Move to .env file
 const SESSION_SECRET: string = 'fijfijfijfiiidddvgdyhnjiicdisjcfijdescofjo';
@@ -61,7 +62,7 @@ const startServer = async () => {
   );
 
   const schema = await buildSchema({
-    resolvers: [UserResolver, ExerciseResolver, RoutineResolver],
+    resolvers: [UserResolver, ExerciseResolver, RoutineResolver, IngredientResolver],
     authChecker: ({ context }) => {
       return context.req.session && context.req.session.userId;
     },
