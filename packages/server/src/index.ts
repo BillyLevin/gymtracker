@@ -7,7 +7,7 @@ import 'reflect-metadata';
 import { buildSchema } from 'type-graphql';
 import { createTypeormConnection } from './createTypeormConnection';
 import { ExerciseResolver } from './modules/exercise/ExerciseResolver';
-import { IngredientResolver } from './modules/ingredient/IngredientResolver';
+import { MealResolver } from './modules/meal/MealResolver';
 import { RoutineResolver } from './modules/routine/RoutineResolver';
 import { UserResolver } from './modules/user/UserResolver';
 import { redis } from './redis';
@@ -62,7 +62,7 @@ const startServer = async () => {
   );
 
   const schema = await buildSchema({
-    resolvers: [UserResolver, ExerciseResolver, RoutineResolver, IngredientResolver],
+    resolvers: [UserResolver, ExerciseResolver, RoutineResolver, MealResolver],
     authChecker: ({ context }) => {
       return context.req.session && context.req.session.userId;
     },

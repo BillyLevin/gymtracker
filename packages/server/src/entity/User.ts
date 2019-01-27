@@ -1,7 +1,7 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { Exercise } from './Exercise';
-import { Ingredient } from './Ingredient';
+import { Meal } from './Meal';
 import { Routine } from './Routine';
 
 @Entity('users')
@@ -24,6 +24,6 @@ export class User extends BaseEntity {
   @OneToMany(() => Routine, routine => routine.user)
   routines: Routine[];
 
-  @OneToMany(() => Ingredient, ingredient => ingredient.user)
-  ingredients: Ingredient[];
+  @OneToMany(() => Meal, meal => meal.user)
+  meals: Meal[];
 }

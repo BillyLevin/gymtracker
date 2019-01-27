@@ -1,10 +1,11 @@
 import { Field, ID, ObjectType } from 'type-graphql';
 import { BaseEntity, Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { Ingredient } from '../modules/types/Ingredient';
 import { User } from './User';
 
 @Entity()
 @ObjectType()
-export class Ingredient extends BaseEntity {
+export class Meal extends BaseEntity {
   @Field(() => ID)
   @PrimaryGeneratedColumn('uuid')
   id: string;
@@ -14,17 +15,21 @@ export class Ingredient extends BaseEntity {
   name: string;
 
   @Field()
-  @Column({ type: 'int' })
-  calories: number;
+  @Column()
+  totalCalories: number;
 
   @Field()
-  @Column({ type: 'int' })
-  protein: number;
+  @Column()
+  totalProtein: number;
+
+  @Field()
+  @Column()
+  ingredients: Ingredient[];
 
   @Field()
   @Column('uuid')
   userId: string;
 
-  @ManyToOne(() => User, user => user.ingredients)
+  @ManyToOne(() => User, user => user.meals)
   user: User;
 }
