@@ -1,5 +1,6 @@
 import { Field, InputType, ObjectType } from 'type-graphql';
 import { Meal } from '../../../entity/Meal';
+import { Error } from '../../types/Error';
 import { Ingredient } from '../../types/Ingredient';
 
 @InputType()
@@ -18,4 +19,7 @@ export class CreateMealResponse {
 
   @Field(() => Meal, { nullable: true })
   meal?: Meal;
+
+  @Field(() => [Error])
+  errors: Error[];
 }
