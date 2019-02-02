@@ -1,0 +1,37 @@
+@import '../../styles/abstracts/variables';
+
+.ingredient-form-container {
+  margin-bottom: 3.2rem;
+}
+
+.ingredient-form {
+  align-items: center;
+  display: flex;
+  max-width: 80rem;
+
+  .input-group {
+    margin-bottom: 0;
+    margin-right: 1.6rem;
+  }
+
+  button {
+    background-color: transparent;
+    border: 0;
+    color: $primary;
+    cursor: pointer;
+    outline: 0;
+    padding: 0;
+    transition: all 0.3s;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: darken($primary, 7);
+    }
+  }
+
+  button svg {
+    height: auto;
+    width: 3rem;
+  }
+}

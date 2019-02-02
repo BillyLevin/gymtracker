@@ -109,6 +109,36 @@ export interface GetExercises {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: CreateMeal
+// ====================================================
+
+export interface CreateMeal_createMeal_meal {
+  id: string;
+  name: string;
+}
+
+export interface CreateMeal_createMeal_errors {
+  path: string;
+  message: string;
+}
+
+export interface CreateMeal_createMeal {
+  meal: CreateMeal_createMeal_meal | null;
+  errors: CreateMeal_createMeal_errors[];
+}
+
+export interface CreateMeal {
+  createMeal: CreateMeal_createMeal;
+}
+
+export interface CreateMealVariables {
+  input: CreateMealInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: CreateRoutine
 // ====================================================
 
@@ -355,6 +385,11 @@ export interface CreateExerciseInput {
   sets: number;
 }
 
+export interface CreateMealInput {
+  name: string;
+  ingredients: IngredientInput[];
+}
+
 export interface CreateRoutineInput {
   name: string;
   day: string;
@@ -367,6 +402,12 @@ export interface ExerciseInput {
   reps: number;
   sets: number;
   userId: string;
+}
+
+export interface IngredientInput {
+  name: string;
+  calories: number;
+  protein: number;
 }
 
 export interface UpdateExerciseInput {

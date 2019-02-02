@@ -4,6 +4,9 @@ import { Field, InputType, ObjectType } from 'type-graphql';
 @InputType('IngredientInput')
 export class Ingredient {
   @Field()
+  id: string;
+
+  @Field()
   name: string;
 
   @Field()

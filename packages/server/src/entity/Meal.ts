@@ -15,11 +15,9 @@ export class Meal extends BaseEntity {
   name: string;
 
   @Field()
-  @Column()
   totalCalories: number;
 
   @Field()
-  @Column()
   totalProtein: number;
 
   @Field(() => [Ingredient])

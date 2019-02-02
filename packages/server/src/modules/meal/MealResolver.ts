@@ -38,7 +38,7 @@ export class MealResolver {
 
   @Authorized()
   @Mutation(() => CreateMealResponse)
-  async createMeal(@Arg('input') input: CreateMealInput, @Ctx('ctx') ctx: MyContext) {
+  async createMeal(@Arg('input') input: CreateMealInput, @Ctx() ctx: MyContext) {
     const { req } = ctx;
     try {
       await mealSchema.validate(input, { abortEarly: false });
@@ -53,8 +53,9 @@ export class MealResolver {
     const userId = req.session!.userId;
 
     try {
-      meal = await Meal.create({ ...input, userId });
-    } catch (_) {
+      meal = await Meal.create({ ...input, userId }).save();
+    } catch (err) {
+      console.log(err);
       return {
         errors: [
           {
