@@ -29,3 +29,18 @@ export class GetMealsByDayResponse {
   @Field(() => [Meal])
   meals: Meal[];
 }
+
+@InputType()
+export class UpdateMealDaysInput {
+  @Field()
+  id: string;
+
+  @Field(() => [String])
+  days: string[];
+}
+
+@ObjectType()
+export class UpdateMealDaysResponse {
+  @Field(() => [Error])
+  errors: Error[];
+}

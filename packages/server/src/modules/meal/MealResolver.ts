@@ -5,7 +5,13 @@ import { calculateSumInArr } from '../../utils/calculateSumInArr';
 import { formatYupError } from '../../utils/formatYupError';
 import { Ingredient } from '../types/Ingredient';
 import { MyContext } from '../types/MyContext';
-import { CreateMealInput, CreateMealResponse, GetMealsByDayResponse } from './shared/types';
+import {
+  CreateMealInput,
+  CreateMealResponse,
+  GetMealsByDayResponse,
+  UpdateMealDaysInput,
+  UpdateMealDaysResponse,
+} from './shared/types';
 
 @Resolver(Meal)
 export class MealResolver {
@@ -82,5 +88,28 @@ export class MealResolver {
     });
 
     return { meals };
+  }
+
+  @Authorized()
+  @Mutation(() => UpdateMealDaysResponse)
+  async updateMealDays(@Arg('input') input: UpdateMealDaysInput) {
+    const { id, days } = input;
+
+    try {
+      await Meal.update(id, { days });
+    } catch (_) {
+      return {
+        errors: [
+          {
+            path: 'days',
+            message: 'Something went wrong. Please try again',
+          },
+        ],
+      };
+    }
+
+    return {
+      errors: [],
+    };
   }
 }
