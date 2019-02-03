@@ -1,7 +1,7 @@
 import React from 'react';
 import DashboardLayout from '../components/DashboardLayout';
-import { withAuth } from '../hocs/withAuth';
 import ExerciseList from '../components/ExerciseList';
+import { withAuth } from '../hocs/withAuth';
 
 const Exercises: React.FC = () => (
   <DashboardLayout title="Your Exercises">

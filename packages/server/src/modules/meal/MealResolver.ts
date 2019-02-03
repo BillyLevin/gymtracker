@@ -1,10 +1,10 @@
 import { mealSchema } from '@gym-tracker/common';
-import { Arg, Authorized, Ctx, FieldResolver, Mutation, Resolver, Root } from 'type-graphql';
+import { Arg, Authorized, Ctx, FieldResolver, Mutation, Query, Resolver, Root } from 'type-graphql';
 import { Meal } from '../../entity/Meal';
 import { formatYupError } from '../../utils/formatYupError';
 import { Ingredient } from '../types/Ingredient';
 import { MyContext } from '../types/MyContext';
-import { CreateMealInput, CreateMealResponse } from './shared/types';
+import { CreateMealInput, CreateMealResponse, GetMealsByDayResponse } from './shared/types';
 
 @Resolver(Meal)
 export class MealResolver {
@@ -70,5 +70,33 @@ export class MealResolver {
       meal,
       errors: [],
     };
+  }
+
+  @Authorized()
+  @Query(() => GetMealsByDayResponse)
+  async getMealsByDay(@Arg('day') day: string, @Ctx() ctx: MyContext) {
+    const { req } = ctx;
+    const userId = req.session!.userId;
+
+    const allMeals = await Meal.find({ where: { userId } });
+
+    if (!allMeals) {
+      return {
+        meals: [],
+      };
+    }
+
+    const meals: Meal[] = [];
+
+    allMeals.forEach((meal: Meal) => {
+      const { days } = meal;
+      if (days) {
+        if (days.some(val => val === day)) {
+          meals.push(meal);
+        }
+      }
+    });
+
+    return { meals };
   }
 }

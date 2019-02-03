@@ -23,3 +23,9 @@ export class CreateMealResponse {
   @Field(() => [Error])
   errors: Error[];
 }
+
+@ObjectType()
+export class GetMealsByDayResponse {
+  @Field(() => [Meal])
+  meals: Meal[];
+}

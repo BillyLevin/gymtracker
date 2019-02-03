@@ -20,6 +20,10 @@ export class Meal extends BaseEntity {
   @Field()
   totalProtein: number;
 
+  @Field(() => [String])
+  @Column({ type: 'text', array: true, nullable: true })
+  days: string[];
+
   @Field(() => [Ingredient])
   @Column({ type: 'json', array: true })
   ingredients: Ingredient[];
