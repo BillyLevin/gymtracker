@@ -1,6 +1,7 @@
 import { mealSchema } from '@gym-tracker/common';
 import { Arg, Authorized, Ctx, FieldResolver, Mutation, Query, Resolver, Root } from 'type-graphql';
 import { Meal } from '../../entity/Meal';
+import { calculateSumInArr } from '../../utils/calculateSumInArr';
 import { formatYupError } from '../../utils/formatYupError';
 import { Ingredient } from '../types/Ingredient';
 import { MyContext } from '../types/MyContext';
@@ -11,29 +12,13 @@ export class MealResolver {
   @FieldResolver()
   totalCalories(@Root() root: Meal) {
     const ingredients: Ingredient[] = root.ingredients;
-    let total: number = 0;
-
-    if (ingredients && ingredients.length) {
-      ingredients.forEach((ingredient: Ingredient) => {
-        total += ingredient.calories;
-      });
-    }
-
-    return total;
+    return calculateSumInArr(ingredients, 'calories');
   }
 
   @FieldResolver()
   totalProtein(@Root() root: Meal) {
     const ingredients: Ingredient[] = root.ingredients;
-    let total: number = 0;
-
-    if (ingredients && ingredients.length) {
-      ingredients.forEach((ingredient: Ingredient) => {
-        total += ingredient.protein;
-      });
-    }
-
-    return total;
+    return calculateSumInArr(ingredients, 'protein');
   }
 
   @Authorized()
@@ -54,8 +39,7 @@ export class MealResolver {
 
     try {
       meal = await Meal.create({ ...input, userId }).save();
-    } catch (err) {
-      console.log(err);
+    } catch (_) {
       return {
         errors: [
           {
