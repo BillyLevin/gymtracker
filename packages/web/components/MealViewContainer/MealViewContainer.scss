@@ -1,0 +1,33 @@
+@import '../../styles/abstracts/variables';
+
+.meal-view-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+
+  .react-select-container {
+    .react-select__control {
+      border: 2px solid $primary;
+      box-shadow: none;
+
+      &:hover {
+        border: 2px solid $primary;
+      }
+
+      &:focus,
+      &:active {
+        border-color: darken($primary, 7);
+      }
+    }
+
+    .react-select__value-container {
+      justify-content: center;
+    }
+  }
+}
+
+.meal-view-container-top {
+  display: flex;
+  flex-direction: column;
+  max-width: 70rem;
+}

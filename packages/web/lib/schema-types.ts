@@ -115,6 +115,8 @@ export interface GetExercises {
 export interface CreateMeal_createMeal_meal {
   id: string;
   name: string;
+  totalCalories: number;
+  totalProtein: number;
 }
 
 export interface CreateMeal_createMeal_errors {
@@ -133,6 +135,79 @@ export interface CreateMeal {
 
 export interface CreateMealVariables {
   input: CreateMealInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL mutation operation: UpdateMealDays
+// ====================================================
+
+export interface UpdateMealDays_updateMealDays_errors {
+  path: string;
+  message: string;
+}
+
+export interface UpdateMealDays_updateMealDays {
+  errors: UpdateMealDays_updateMealDays_errors[];
+}
+
+export interface UpdateMealDays {
+  updateMealDays: UpdateMealDays_updateMealDays;
+}
+
+export interface UpdateMealDaysVariables {
+  input: UpdateMealDaysInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetMeals
+// ====================================================
+
+export interface GetMeals_getMeals_meals {
+  id: string;
+  name: string;
+  totalCalories: number;
+  totalProtein: number;
+  days: string[];
+}
+
+export interface GetMeals_getMeals {
+  meals: GetMeals_getMeals_meals[];
+}
+
+export interface GetMeals {
+  getMeals: GetMeals_getMeals;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GetMealsByDay
+// ====================================================
+
+export interface GetMealsByDay_getMealsByDay_meals {
+  id: string;
+  name: string;
+  totalCalories: number;
+  totalProtein: number;
+}
+
+export interface GetMealsByDay_getMealsByDay {
+  meals: GetMealsByDay_getMealsByDay_meals[];
+}
+
+export interface GetMealsByDay {
+  getMealsByDay: GetMealsByDay_getMealsByDay;
+}
+
+export interface GetMealsByDayVariables {
+  day: string;
 }
 
 /* tslint:disable */
@@ -405,6 +480,7 @@ export interface ExerciseInput {
 }
 
 export interface IngredientInput {
+  id: string;
   name: string;
   calories: number;
   protein: number;
@@ -415,6 +491,11 @@ export interface UpdateExerciseInput {
   name: string;
   reps: number;
   sets: number;
+}
+
+export interface UpdateMealDaysInput {
+  id: string;
+  day: string;
 }
 
 export interface UpdateRoutineInput {

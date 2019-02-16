@@ -1,8 +1,7 @@
-import React from 'react';
 import { FieldProps } from 'formik';
-import { Props as ReactSelectProps } from 'react-select/lib/Select';
+import React from 'react';
 import Select from 'react-select';
-
+import { Props as ReactSelectProps } from 'react-select/lib/Select';
 import './Select.scss';
 
 interface ExtraProps {
@@ -17,6 +16,7 @@ const SelectComponent: React.FC<ReactSelectProps & FieldProps & ExtraProps> = ({
   hasError,
   isMulti,
   isSearchable,
+  placeholder,
 }) => (
   <Select
     options={options}
@@ -32,6 +32,7 @@ const SelectComponent: React.FC<ReactSelectProps & FieldProps & ExtraProps> = ({
     onMenuClose={() => form.setFieldTouched(field.name)}
     isMulti={isMulti}
     isSearchable={isSearchable}
+    placeholder={placeholder}
   />
 );
 

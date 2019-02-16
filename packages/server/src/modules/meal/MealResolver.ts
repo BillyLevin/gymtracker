@@ -9,6 +9,7 @@ import {
   CreateMealInput,
   CreateMealResponse,
   GetMealsByDayResponse,
+  GetMealsResponse,
   UpdateMealDaysInput,
   UpdateMealDaysResponse,
 } from './shared/types';
@@ -45,7 +46,8 @@ export class MealResolver {
 
     try {
       meal = await Meal.create({ ...input, userId }).save();
-    } catch (_) {
+    } catch (e) {
+      console.log(e);
       return {
         errors: [
           {
@@ -93,7 +95,25 @@ export class MealResolver {
   @Authorized()
   @Mutation(() => UpdateMealDaysResponse)
   async updateMealDays(@Arg('input') input: UpdateMealDaysInput) {
-    const { id, days } = input;
+    const { id, day } = input;
+
+    let meal = null;
+
+    try {
+      meal = await Meal.findOne(id);
+    } catch (_) {
+      return {
+        errors: [
+          {
+            path: 'day',
+            message: 'Something went wrong. Please try again',
+          },
+        ],
+      };
+    }
+
+    const days = meal!.days;
+    days.push(day);
 
     try {
       await Meal.update(id, { days });
@@ -101,7 +121,7 @@ export class MealResolver {
       return {
         errors: [
           {
-            path: 'days',
+            path: 'day',
             message: 'Something went wrong. Please try again',
           },
         ],
@@ -110,6 +130,21 @@ export class MealResolver {
 
     return {
       errors: [],
+    };
+  }
+
+  @Authorized()
+  @Query(() => GetMealsResponse)
+  async getMeals(@Ctx() ctx: MyContext) {
+    const { req } = ctx;
+
+    const userId = req.session!.userId;
+
+    const meals = await Meal.find({ where: { userId } });
+    console.log(meals);
+
+    return {
+      meals: meals || [],
     };
   }
 }

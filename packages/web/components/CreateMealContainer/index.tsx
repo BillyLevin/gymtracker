@@ -1,8 +1,8 @@
 import React from 'react';
 import { v4 } from 'uuid';
-import { Ingredient } from '../../types/Ingredient';
+import { Ingredient, IngredientWithoutId } from '../../types/Ingredient';
 import { getMealTotals } from '../../utils/getTotalCalories';
-import IngredientForm from '../IngredientForm.tsx';
+import IngredientForm from '../IngredientForm';
 import MealForm from '../MealForm';
 import './CreateMealContainer.scss';
 import IngredientComponent from './IngredientComponent';
@@ -16,11 +16,11 @@ class CreateMealContainer extends React.Component<{}, State> {
     ingredients: [],
   };
 
-  addIngredient = (ingredient: Ingredient) => {
+  addIngredient = (ingredient: IngredientWithoutId) => {
     this.setState(prevState => {
       const { ingredients } = prevState;
-      ingredient.id = v4();
-      ingredients.push(ingredient);
+      const newIngredient = { ...ingredient, id: v4() };
+      ingredients.push(newIngredient);
       return { ...prevState, ingredients };
     });
   };

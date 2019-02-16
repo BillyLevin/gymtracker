@@ -4,4 +4,3 @@ import Routes, * as nextRoutes from 'next-routes';
 export const routes = nextRoutes() as Routes;
 
 routes.add('routines', '/routines/:action/:id');
-routes.add('meals', '/meals/:day');

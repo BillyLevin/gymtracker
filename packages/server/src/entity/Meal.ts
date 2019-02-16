@@ -21,7 +21,7 @@ export class Meal extends BaseEntity {
   totalProtein: number;
 
   @Field(() => [String])
-  @Column({ type: 'text', array: true, nullable: true })
+  @Column({ type: 'text', array: true, nullable: true, default: () => 'ARRAY[]::text[]' })
   days: string[];
 
   @Field(() => [Ingredient])

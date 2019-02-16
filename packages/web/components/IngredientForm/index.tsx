@@ -2,7 +2,7 @@ import { ingredientSchema } from '@gym-tracker/common';
 import { Field, Formik } from 'formik';
 import React from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
-import { Ingredient } from '../../types/Ingredient';
+import { IngredientWithoutId } from '../../types/Ingredient';
 import InputGroup from '../InputGroup';
 import './IngredientForm.scss';
 
@@ -13,7 +13,7 @@ interface FormValues {
 }
 
 interface Props {
-  addIngredient: (ingredient: Ingredient) => void;
+  addIngredient: (ingredient: IngredientWithoutId) => void;
 }
 
 const IngredientForm: React.FC<Props> = ({ addIngredient }) => (

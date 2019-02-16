@@ -35,12 +35,18 @@ export class UpdateMealDaysInput {
   @Field()
   id: string;
 
-  @Field(() => [String])
-  days: string[];
+  @Field(() => String)
+  day: string;
 }
 
 @ObjectType()
 export class UpdateMealDaysResponse {
   @Field(() => [Error])
   errors: Error[];
+}
+
+@ObjectType()
+export class GetMealsResponse {
+  @Field(() => [Meal])
+  meals: Meal[];
 }
