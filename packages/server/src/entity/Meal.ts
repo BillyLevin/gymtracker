@@ -25,7 +25,7 @@ export class Meal extends BaseEntity {
   days: string[];
 
   @Field(() => [Ingredient])
-  @Column({ type: 'json', array: true })
+  @Column({ type: 'jsonb' })
   ingredients: Ingredient[];
 
   @Field()

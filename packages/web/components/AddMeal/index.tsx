@@ -17,15 +17,13 @@ interface Props {
 }
 
 const getMealOptions = (meals: Meal[], day: string) => {
-  return meals.reduce((meal, meal1) => {
-    console.log(meal1.name);
-  }, []);
+  return [];
 };
 
 const AddMeal: React.FC<Props> = ({ day }) => (
   <Query<GetMeals> query={GET_MEALS_QUERY}>
     {({ data }) => {
-      if (data && data.getMeals.meals && data.getMeals.meals.length) {
+      if (data && data.getMeals && data.getMeals.meals && data.getMeals.meals.length) {
         const mealOptions = getMealOptions(data.getMeals.meals, day);
         return (
           <Mutation<UpdateMealDays, UpdateMealDaysVariables> mutation={UPDATE_MEAL_DAYS_MUTATION}>
