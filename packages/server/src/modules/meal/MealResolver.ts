@@ -10,6 +10,7 @@ import {
   CreateMealResponse,
   GetMealsByDayResponse,
   GetMealsResponse,
+  RemoveMealFromDayResponse,
   UpdateMealDaysInput,
   UpdateMealDaysResponse,
 } from './shared/types';
@@ -144,10 +145,50 @@ export class MealResolver {
     const userId = req.session!.userId;
 
     const meals = await Meal.find({ where: { userId } });
-    console.log(meals);
 
     return {
       meals: meals || [],
+    };
+  }
+
+  @Authorized()
+  @Mutation(() => RemoveMealFromDayResponse)
+  async removeMealFromDay(@Arg('input') input: UpdateMealDaysInput) {
+    const { id, day } = input;
+
+    let meal = null;
+
+    try {
+      meal = await Meal.findOne(id);
+    } catch (_) {
+      return {
+        errors: [
+          {
+            path: 'day',
+            message: 'Something went wrong. Please try again',
+          },
+        ],
+      };
+    }
+
+    const days = meal!.days;
+    days.filter(val => val !== day);
+
+    try {
+      await Meal.update(id, { days });
+    } catch (_) {
+      return {
+        errors: [
+          {
+            path: 'day',
+            message: 'Something went wrong. Please try again',
+          },
+        ],
+      };
+    }
+
+    return {
+      errors: [],
     };
   }
 }

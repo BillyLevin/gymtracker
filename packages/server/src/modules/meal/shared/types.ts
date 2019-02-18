@@ -53,3 +53,9 @@ export class GetMealsResponse {
   @Field(() => [Meal])
   meals: Meal[];
 }
+
+@ObjectType()
+export class RemoveMealFromDayResponse {
+  @Field(() => [Error])
+  errors: Error[];
+}
