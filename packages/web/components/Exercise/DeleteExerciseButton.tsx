@@ -1,9 +1,9 @@
 import React from 'react';
-import Button from '../Button';
 import { Mutation } from 'react-apollo';
-import { DeleteExercise, DeleteExerciseVariables } from '../../lib/schema-types';
 import { DELETE_EXERCISE_MUTATION } from '../../graphql/exercise/mutation/deleteExercise';
 import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
+import { DeleteExercise, DeleteExerciseVariables } from '../../lib/schema-types';
+import Button from '../Button';
 
 interface Props {
   id: string;

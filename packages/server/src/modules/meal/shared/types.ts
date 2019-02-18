@@ -43,6 +43,9 @@ export class UpdateMealDaysInput {
 export class UpdateMealDaysResponse {
   @Field(() => [Error])
   errors: Error[];
+
+  @Field(() => Meal, { nullable: true })
+  meal?: Meal;
 }
 
 @ObjectType()

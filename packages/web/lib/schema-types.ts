@@ -144,12 +144,21 @@ export interface CreateMealVariables {
 // GraphQL mutation operation: UpdateMealDays
 // ====================================================
 
+export interface UpdateMealDays_updateMealDays_meal {
+  id: string;
+  name: string;
+  totalCalories: number;
+  totalProtein: number;
+  days: string[];
+}
+
 export interface UpdateMealDays_updateMealDays_errors {
   path: string;
   message: string;
 }
 
 export interface UpdateMealDays_updateMealDays {
+  meal: UpdateMealDays_updateMealDays_meal | null;
   errors: UpdateMealDays_updateMealDays_errors[];
 }
 
@@ -196,6 +205,7 @@ export interface GetMealsByDay_getMealsByDay_meals {
   name: string;
   totalCalories: number;
   totalProtein: number;
+  days: string[];
 }
 
 export interface GetMealsByDay_getMealsByDay {

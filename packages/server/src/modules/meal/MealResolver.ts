@@ -128,8 +128,11 @@ export class MealResolver {
       };
     }
 
+    const updatedMeal = await Meal.findOne(id);
+
     return {
       errors: [],
+      meal: updatedMeal,
     };
   }
 

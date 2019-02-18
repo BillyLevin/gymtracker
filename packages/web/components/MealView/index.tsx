@@ -12,7 +12,6 @@ interface Props {
 const MealView: React.FC<Props> = ({ day }) => (
   <div className="meal-view">
     <h2 className="subheading">{day}'s Meals</h2>
-    <AddMeal day={day} />
     <Query<GetMealsByDay, GetMealsByDayVariables> query={GET_MEALS_BY_DAY} variables={{ day }}>
       {({ data, loading }) => {
         if (loading) {
@@ -38,6 +37,8 @@ const MealView: React.FC<Props> = ({ day }) => (
         return <div className="no-meals">You currently have no meals scheduled for {day}s</div>;
       }}
     </Query>
+
+    <AddMeal day={day} />
   </div>
 );
 

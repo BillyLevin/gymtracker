@@ -8,6 +8,7 @@ export const GET_MEALS_BY_DAY = gql`
         name
         totalCalories
         totalProtein
+        days
       }
     }
   }
