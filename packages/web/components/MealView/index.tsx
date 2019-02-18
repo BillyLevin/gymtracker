@@ -3,6 +3,7 @@ import { Query } from 'react-apollo';
 import { GET_MEALS_BY_DAY } from '../../graphql/meal/query/getMealsByDay';
 import { GetMealsByDay, GetMealsByDayVariables } from '../../lib/schema-types';
 import AddMeal from '../AddMeal';
+import Meal from '../Meal';
 import './MealView.scss';
 
 interface Props {
@@ -22,14 +23,7 @@ const MealView: React.FC<Props> = ({ day }) => (
           return (
             <>
               {meals.map(meal => {
-                const { id, name, totalCalories, totalProtein } = meal;
-                return (
-                  <div className="meal" key={id}>
-                    <h3 className="meal-name">{name}</h3>
-                    <span>{totalCalories} calories</span>
-                    <span>{totalProtein}g protein</span>
-                  </div>
-                );
+                return <Meal meal={meal} key={meal.id} day={day} />;
               })}
             </>
           );

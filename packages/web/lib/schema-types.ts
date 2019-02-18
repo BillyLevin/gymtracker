@@ -141,6 +141,30 @@ export interface CreateMealVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL mutation operation: RemoveMealFromDay
+// ====================================================
+
+export interface RemoveMealFromDay_removeMealFromDay_errors {
+  path: string;
+  message: string;
+}
+
+export interface RemoveMealFromDay_removeMealFromDay {
+  errors: RemoveMealFromDay_removeMealFromDay_errors[];
+}
+
+export interface RemoveMealFromDay {
+  removeMealFromDay: RemoveMealFromDay_removeMealFromDay;
+}
+
+export interface RemoveMealFromDayVariables {
+  input: UpdateMealDaysInput;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL mutation operation: UpdateMealDays
 // ====================================================
 

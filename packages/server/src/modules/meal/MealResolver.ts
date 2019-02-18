@@ -172,10 +172,11 @@ export class MealResolver {
     }
 
     const days = meal!.days;
-    days.filter(val => val !== day);
+
+    const filteredDays = days.filter(val => val !== day);
 
     try {
-      await Meal.update(id, { days });
+      await Meal.update(id, { days: filteredDays });
     } catch (_) {
       return {
         errors: [
