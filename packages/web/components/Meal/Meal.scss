@@ -1,0 +1,39 @@
+@import '../../styles/abstracts/variables';
+
+.meal {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.6rem;
+
+  .subtitle {
+    margin: 0;
+  }
+
+  .meal-info {
+    align-items: center;
+    display: flex;
+
+    span {
+      font-size: 2rem;
+      margin-left: 1.6rem;
+    }
+  }
+
+  .btn {
+    border: 0;
+    padding: 0;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: transparent;
+      color: lighten($error, 10);
+    }
+  }
+
+  svg {
+    height: auto;
+    width: 3.2rem;
+  }
+}

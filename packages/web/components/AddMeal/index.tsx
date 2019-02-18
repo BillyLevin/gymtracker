@@ -1,14 +1,15 @@
 import { Field, Formik } from 'formik';
 import React from 'react';
 import { Mutation, Query } from 'react-apollo';
-import { FaPlusCircle } from 'react-icons/fa';
 import { UPDATE_MEAL_DAYS_MUTATION } from '../../graphql/meal/mutation/updateMealDays';
 import { GET_MEALS_QUERY } from '../../graphql/meal/query/getMeals';
 import { GET_MEALS_BY_DAY } from '../../graphql/meal/query/getMealsByDay';
 import { GetMeals, UpdateMealDays, UpdateMealDaysVariables } from '../../lib/schema-types';
 import { Meal } from '../../types/Meal';
 import { normalizeErrors } from '../../utils/normalizeErrors';
+import Button from '../Button';
 import InputGroup from '../InputGroup';
+import './AddMeal.scss';
 
 interface FormValues {
   meal?: Meal;
@@ -109,9 +110,10 @@ const AddMeal: React.FC<Props> = ({ day }) => (
                         inputType="select"
                         value={values.meal}
                       />
-                      <button type="submit" disabled={isSubmitting}>
-                        <FaPlusCircle />
-                      </button>
+
+                      <Button theme="primary" type="submit" disabled={isSubmitting}>
+                        Add
+                      </Button>
                     </form>
                   )}
                 </Formik>

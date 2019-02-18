@@ -1,0 +1,10 @@
+.add-meal {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  min-width: 30rem;
+
+  .btn {
+    width: 100%;
+  }
+}

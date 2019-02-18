@@ -1,4 +1,5 @@
 import React from 'react';
+import './Meal.scss';
 import RemoveMealButton from './RemoveMealButton';
 
 interface Props {
@@ -15,9 +16,11 @@ interface Meal {
 
 const Meal: React.FC<Props> = ({ meal: { id, name, totalCalories, totalProtein }, day }) => (
   <div className="meal">
-    <h3 className="meal-name">{name}</h3>
-    <span>{totalCalories} calories</span>
-    <span>{totalProtein}g protein</span>
+    <div className="meal-info">
+      <h3 className="subtitle">{name}:</h3>
+      <span>{totalCalories} calories</span>
+      <span>{totalProtein}g protein</span>
+    </div>
     <RemoveMealButton id={id} day={day} />
   </div>
 );

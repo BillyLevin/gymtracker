@@ -8,4 +8,20 @@
     border-bottom: 2px solid $primary;
     padding-bottom: 1.6rem;
   }
+
+  .meal-view-footer {
+    align-items: center;
+    border-top: 2px solid $primary;
+    display: flex;
+    justify-content: space-between;
+    padding-top: 1.6rem;
+  }
+
+  .no-meals {
+    color: $mid-grey;
+    font-size: 3rem;
+    font-weight: 600;
+    margin-bottom: 3.2rem;
+    text-align: center;
+  }
 }

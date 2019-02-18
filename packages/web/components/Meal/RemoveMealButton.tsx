@@ -1,5 +1,6 @@
 import React from 'react';
 import { Mutation } from 'react-apollo';
+import { FaTimes } from 'react-icons/fa';
 import { REMOVE_MEAL_FROM_DAY_MUTATION } from '../../graphql/meal/mutation/removeMealFromDay';
 import { GET_MEALS_BY_DAY } from '../../graphql/meal/query/getMealsByDay';
 import { RemoveMealFromDay, RemoveMealFromDayVariables } from '../../lib/schema-types';
@@ -44,7 +45,7 @@ const RemoveMealButton: React.FC<Props> = ({ id, day }) => (
           });
         }}
       >
-        Remove
+        <FaTimes />
       </Button>
     )}
   </Mutation>

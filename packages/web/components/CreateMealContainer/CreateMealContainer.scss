@@ -4,34 +4,6 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-
-  .totals {
-    background-color: $primary;
-    border-radius: 3px;
-    display: flex;
-    margin-right: 3.2rem;
-    padding: 1.6rem;
-  }
-
-  .total {
-    color: $white;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin: 0 1.6rem;
-    text-align: center;
-  }
-
-  .total span:first-child {
-    font-size: 5rem;
-    margin-bottom: 0.8rem;
-  }
-
-  .total span:nth-child(2) {
-    font-size: 1.4rem;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
 }
 
 .create-meal-footer {

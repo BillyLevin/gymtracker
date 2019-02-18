@@ -1,9 +1,10 @@
 import React from 'react';
 import { v4 } from 'uuid';
 import { Ingredient, IngredientWithoutId } from '../../types/Ingredient';
-import { getMealTotals } from '../../utils/getTotalCalories';
+import { getMealTotals } from '../../utils/getTotals';
 import IngredientForm from '../IngredientForm';
 import MealForm from '../MealForm';
+import Totals from '../Totals';
 import './CreateMealContainer.scss';
 import IngredientComponent from './IngredientComponent';
 
@@ -63,16 +64,7 @@ class CreateMealContainer extends React.Component<{}, State> {
           </tbody>
         </table>
         <div className="create-meal-footer">
-          <div className="totals">
-            <div className="total">
-              <span>{totalCalories}</span>
-              <span>Calories</span>
-            </div>
-            <div className="total">
-              <span>{totalProtein}g</span>
-              <span>Protein</span>
-            </div>
-          </div>
+          <Totals totalCalories={totalCalories} totalProtein={totalProtein} />
           <MealForm ingredients={ingredients} />
         </div>
       </div>
