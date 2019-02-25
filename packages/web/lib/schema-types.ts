@@ -198,6 +198,32 @@ export interface UpdateMealDaysVariables {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GetMealById
+// ====================================================
+
+export interface GetMealById_getMealById_meal {
+  id: string;
+  name: string;
+  totalCalories: number;
+  totalProtein: number;
+}
+
+export interface GetMealById_getMealById {
+  meal: GetMealById_getMealById_meal | null;
+}
+
+export interface GetMealById {
+  getMealById: GetMealById_getMealById;
+}
+
+export interface GetMealByIdVariables {
+  id: string;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GetMeals
 // ====================================================
 

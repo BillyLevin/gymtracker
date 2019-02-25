@@ -8,11 +8,14 @@ import { MyContext } from '../types/MyContext';
 import {
   CreateMealInput,
   CreateMealResponse,
+  GetMealByIdResponse,
   GetMealsByDayResponse,
   GetMealsResponse,
   RemoveMealFromDayResponse,
   UpdateMealDaysInput,
   UpdateMealDaysResponse,
+  UpdateMealInput,
+  UpdateMealResponse,
 } from './shared/types';
 
 @Resolver(Meal)
@@ -189,6 +192,53 @@ export class MealResolver {
     }
 
     return {
+      errors: [],
+    };
+  }
+
+  @Authorized()
+  @Mutation(() => UpdateMealResponse)
+  async updateMeal(@Arg('input') input: UpdateMealInput) {
+    const { id, ingredients, name } = input;
+
+    try {
+      await Meal.update(id, { name, ingredients });
+    } catch (_) {
+      return {
+        errors: [
+          {
+            path: 'name',
+            message: 'Something went wrong. Please try again',
+          },
+        ],
+      };
+    }
+
+    return {
+      errors: [],
+    };
+  }
+
+  @Authorized()
+  @Query(() => GetMealByIdResponse)
+  async getMealById(@Arg('id') id: string) {
+    let meal = null;
+
+    try {
+      meal = await Meal.findOne(id);
+    } catch (_) {
+      return {
+        errors: [
+          {
+            path: 'id',
+            message: 'Meal not found',
+          },
+        ],
+      };
+    }
+
+    return {
+      meal,
       errors: [],
     };
   }

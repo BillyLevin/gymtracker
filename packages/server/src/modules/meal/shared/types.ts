@@ -59,3 +59,30 @@ export class RemoveMealFromDayResponse {
   @Field(() => [Error])
   errors: Error[];
 }
+
+@InputType()
+export class UpdateMealInput {
+  @Field()
+  id: string;
+
+  @Field()
+  name: string;
+
+  @Field(() => [Ingredient])
+  ingredients: Ingredient[];
+}
+
+@ObjectType()
+export class UpdateMealResponse {
+  @Field(() => [Error])
+  errors: Error[];
+}
+
+@ObjectType()
+export class GetMealByIdResponse {
+  @Field(() => Meal, { nullable: true })
+  meal?: Meal;
+
+  @Field(() => [Error])
+  errors: Error[];
+}
