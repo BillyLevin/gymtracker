@@ -14,8 +14,6 @@ import {
   RemoveMealFromDayResponse,
   UpdateMealDaysInput,
   UpdateMealDaysResponse,
-  UpdateMealInput,
-  UpdateMealResponse,
 } from './shared/types';
 
 @Resolver(Meal)
@@ -34,32 +32,52 @@ export class MealResolver {
 
   @Authorized()
   @Mutation(() => CreateMealResponse)
-  async createMeal(@Arg('input') input: CreateMealInput, @Ctx() ctx: MyContext) {
-    const { req } = ctx;
-    try {
-      await mealSchema.validate(input, { abortEarly: false });
-    } catch (err) {
-      return {
-        errors: formatYupError(err),
-      };
-    }
+  async createMeal(
+    @Ctx() ctx: MyContext,
+    @Arg('input') input: CreateMealInput,
+    @Arg('id', { nullable: true }) id?: string,
+  ) {
+    let meal = null;
+    // if an id is provided, we update the meal instead of creating a new one
+    if (id) {
+      const { name, ingredients } = input;
+      try {
+        await Meal.update(id, { name, ingredients });
+      } catch (_) {
+        return {
+          errors: [
+            {
+              path: 'name',
+              message: 'Something went wrong. Please try again',
+            },
+          ],
+        };
+      }
+      meal = await Meal.findOne(id);
+    } else {
+      const { req } = ctx;
+      try {
+        await mealSchema.validate(input, { abortEarly: false });
+      } catch (err) {
+        return {
+          errors: formatYupError(err),
+        };
+      }
 
-    let meal: Meal | null = null;
+      const userId = req.session!.userId;
 
-    const userId = req.session!.userId;
-
-    try {
-      meal = await Meal.create({ ...input, userId }).save();
-    } catch (e) {
-      console.log(e);
-      return {
-        errors: [
-          {
-            path: 'name',
-            message: 'Something went wrong. Please try again',
-          },
-        ],
-      };
+      try {
+        meal = await Meal.create({ ...input, userId }).save();
+      } catch (e) {
+        return {
+          errors: [
+            {
+              path: 'name',
+              message: 'Something went wrong. Please try again',
+            },
+          ],
+        };
+      }
     }
 
     return {
@@ -185,29 +203,6 @@ export class MealResolver {
         errors: [
           {
             path: 'day',
-            message: 'Something went wrong. Please try again',
-          },
-        ],
-      };
-    }
-
-    return {
-      errors: [],
-    };
-  }
-
-  @Authorized()
-  @Mutation(() => UpdateMealResponse)
-  async updateMeal(@Arg('input') input: UpdateMealInput) {
-    const { id, ingredients, name } = input;
-
-    try {
-      await Meal.update(id, { name, ingredients });
-    } catch (_) {
-      return {
-        errors: [
-          {
-            path: 'name',
             message: 'Something went wrong. Please try again',
           },
         ],

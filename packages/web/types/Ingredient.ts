@@ -3,6 +3,7 @@ export interface Ingredient {
   name: string;
   calories: number;
   protein: number;
+  __typename?: string;
 }
 
 export interface IngredientWithoutId {

@@ -14,9 +14,6 @@ export class CreateMealInput {
 
 @ObjectType()
 export class CreateMealResponse {
-  @Field()
-  name: string;
-
   @Field(() => Meal, { nullable: true })
   meal?: Meal;
 
@@ -58,18 +55,6 @@ export class GetMealsResponse {
 export class RemoveMealFromDayResponse {
   @Field(() => [Error])
   errors: Error[];
-}
-
-@InputType()
-export class UpdateMealInput {
-  @Field()
-  id: string;
-
-  @Field()
-  name: string;
-
-  @Field(() => [Ingredient])
-  ingredients: Ingredient[];
 }
 
 @ObjectType()

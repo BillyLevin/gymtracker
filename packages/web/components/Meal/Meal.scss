@@ -34,6 +34,17 @@
 
   svg {
     height: auto;
-    width: 3.2rem;
+    width: 2.4rem;
+  }
+
+  .edit-meal-button {
+    color: $primary;
+    margin-right: 0.8rem;
+
+    &:hover,
+    &:active,
+    &:focus {
+      color: darken($primary, 7);
+    }
   }
 }

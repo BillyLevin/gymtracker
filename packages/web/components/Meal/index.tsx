@@ -1,4 +1,5 @@
 import React from 'react';
+import EditMealButton from './EditMealButton';
 import './Meal.scss';
 import RemoveMealButton from './RemoveMealButton';
 
@@ -21,7 +22,10 @@ const Meal: React.FC<Props> = ({ meal: { id, name, totalCalories, totalProtein }
       <span>{totalCalories} calories</span>
       <span>{totalProtein}g protein</span>
     </div>
-    <RemoveMealButton id={id} day={day} />
+    <div className="meal-icons">
+      <EditMealButton id={id} />
+      <RemoveMealButton id={id} day={day} />
+    </div>
   </div>
 );
 

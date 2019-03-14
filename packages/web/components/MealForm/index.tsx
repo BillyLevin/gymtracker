@@ -16,9 +16,11 @@ interface FormValues {
 
 interface Props {
   ingredients: Ingredient[];
+  editMode: boolean;
+  mealId?: string;
 }
 
-const MealForm: React.FC<Props> = ({ ingredients }) => (
+const MealForm: React.FC<Props> = ({ ingredients, editMode, mealId }) => (
   <Mutation<CreateMeal, CreateMealVariables> mutation={CREATE_MEAL_MUTATION}>
     {mutate => (
       <Formik<FormValues>
@@ -26,7 +28,10 @@ const MealForm: React.FC<Props> = ({ ingredients }) => (
         validationSchema={mealSchema}
         onSubmit={async (input, { setSubmitting, setErrors }) => {
           const response = await mutate({
-            variables: { input: { name: input.name, ingredients } },
+            variables: {
+              input: { name: input.name, ingredients },
+              id: editMode && mealId ? mealId : undefined,
+            },
           });
           if (
             response &&
@@ -50,7 +55,7 @@ const MealForm: React.FC<Props> = ({ ingredients }) => (
               label="Meal Name"
             />
             <Button type="submit" theme="primary" disabled={isSubmitting}>
-              Create meal
+              {editMode ? 'Update meal' : 'Create meal'}
             </Button>
           </form>
         )}

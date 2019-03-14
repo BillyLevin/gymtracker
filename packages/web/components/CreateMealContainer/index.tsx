@@ -1,5 +1,6 @@
 import React from 'react';
 import { v4 } from 'uuid';
+import { GetMealById_getMealById_meal as Meal } from '../../lib/schema-types';
 import { Ingredient, IngredientWithoutId } from '../../types/Ingredient';
 import { getMealTotals } from '../../utils/getTotals';
 import IngredientForm from '../IngredientForm';
@@ -12,9 +13,25 @@ interface State {
   ingredients: Ingredient[];
 }
 
-class CreateMealContainer extends React.Component<{}, State> {
+interface Props {
+  editMode: boolean;
+  meal?: Meal;
+}
+
+const formatIngredients = (ingredients: Ingredient[]): Ingredient[] => {
+  return ingredients.map(ingredient => {
+    const { __typename, ...rest } = ingredient;
+    return rest;
+  });
+};
+
+class CreateMealContainer extends React.Component<Props, State> {
+  static defaultProps = {
+    editMode: false,
+  };
+
   state: State = {
-    ingredients: [],
+    ingredients: this.props.meal ? formatIngredients(this.props.meal.ingredients) : [],
   };
 
   addIngredient = (ingredient: IngredientWithoutId) => {
@@ -39,6 +56,7 @@ class CreateMealContainer extends React.Component<{}, State> {
   render() {
     const { ingredients } = this.state;
     const { totalCalories, totalProtein } = getMealTotals(ingredients);
+    const { editMode, meal } = this.props;
     return (
       <div className="create-meal-container">
         <IngredientForm addIngredient={this.addIngredient} />
@@ -65,7 +83,11 @@ class CreateMealContainer extends React.Component<{}, State> {
         </table>
         <div className="create-meal-footer">
           <Totals totalCalories={totalCalories} totalProtein={totalProtein} />
-          <MealForm ingredients={ingredients} />
+          <MealForm
+            ingredients={ingredients}
+            editMode={editMode}
+            mealId={meal ? meal.id : undefined}
+          />
         </div>
       </div>
     );

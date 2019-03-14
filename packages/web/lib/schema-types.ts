@@ -135,6 +135,7 @@ export interface CreateMeal {
 
 export interface CreateMealVariables {
   input: CreateMealInput;
+  id?: string | null;
 }
 
 /* tslint:disable */
@@ -201,11 +202,20 @@ export interface UpdateMealDaysVariables {
 // GraphQL query operation: GetMealById
 // ====================================================
 
+export interface GetMealById_getMealById_meal_ingredients {
+  id: string;
+  name: string;
+  calories: number;
+  protein: number;
+}
+
 export interface GetMealById_getMealById_meal {
   id: string;
   name: string;
   totalCalories: number;
   totalProtein: number;
+  days: string[];
+  ingredients: GetMealById_getMealById_meal_ingredients[];
 }
 
 export interface GetMealById_getMealById {
@@ -505,6 +515,21 @@ export interface Me_me {
 
 export interface Me {
   me: Me_me | null;
+}
+
+/* tslint:disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: MealInfo
+// ====================================================
+
+export interface MealInfo {
+  id: string;
+  name: string;
+  totalCalories: number;
+  totalProtein: number;
+  days: string[];
 }
 
 /* tslint:disable */

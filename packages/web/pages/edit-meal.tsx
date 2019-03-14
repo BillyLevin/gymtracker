@@ -1,10 +1,16 @@
 import React from 'react';
+import CreateMealContainer from '../components/CreateMealContainer';
+import DashboardLayout from '../components/DashboardLayout';
 import { GET_MEAL_BY_ID_QUERY } from '../graphql/meal/query/getMealById';
 import redirect from '../lib/redirect';
-import { GetMealById } from '../lib/schema-types';
+import { GetMealById, GetMealById_getMealById_meal as Meal } from '../lib/schema-types';
 import { NextContextWithApollo } from '../types/NextContextWithApollo';
 
-class EditMealPage extends React.Component {
+interface Props {
+  meal?: Meal;
+}
+
+class EditMealPage extends React.Component<Props> {
   static async getInitialProps({ apolloClient, query, ...ctx }: NextContextWithApollo) {
     if (!query || (query && !query.id)) {
       redirect(ctx, '/meals');
@@ -28,14 +34,23 @@ class EditMealPage extends React.Component {
         return { meal };
       } else {
         redirect(ctx, '/meals');
-        return {};
+        return { meal: undefined };
       }
     }
 
-    return {};
+    redirect(ctx, '/meals');
+    return { meal: undefined };
   }
   render() {
-    return <p>hello</p>;
+    const { meal } = this.props;
+    return (
+      <DashboardLayout title="Edit Meal">
+        <div className="form-page-container">
+          <h1 className="main-heading">Update your meal</h1>
+          <CreateMealContainer editMode={true} meal={meal || undefined} />
+        </div>
+      </DashboardLayout>
+    );
   }
 }
 
