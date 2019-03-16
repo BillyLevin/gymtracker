@@ -7,6 +7,7 @@ import { LoginMutation, LoginMutationVariables } from '../../lib/schema-types';
 import { normalizeErrors } from '../../utils/normalizeErrors';
 import Button from '../Button';
 import InputGroup from '../InputGroup';
+import './LoginForm.scss';
 
 interface FormValues {
   email: string;
@@ -37,7 +38,7 @@ const LoginForm: React.FC = () => (
         }}
       >
         {({ handleSubmit, isSubmitting }) => (
-          <form onSubmit={handleSubmit} className="form form--primary">
+          <form onSubmit={handleSubmit} className="login-form">
             <Field
               name="email"
               label="Email"
