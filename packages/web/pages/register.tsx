@@ -1,8 +1,9 @@
-import Layout from '../components/Layout';
+import CustomHead from '../components/CustomHead';
 import RegisterForm from '../components/RegisterForm';
 
 export default () => (
-  <Layout title="Register">
+  <>
+    <CustomHead title="Register" />
     <RegisterForm />
-  </Layout>
+  </>
 );

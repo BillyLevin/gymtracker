@@ -1,13 +1,13 @@
-import React from 'react';
-import LoginForm from '../components/LoginForm';
-import Logo from '../components/Logo';
 import Link from 'next/link';
+import React from 'react';
 import Button from '../components/Button';
 import CustomHead from '../components/CustomHead';
-import { NextContextWithApollo } from '../types/NextContextWithApollo';
+import LoginForm from '../components/LoginForm';
+import Logo from '../components/Logo';
 import { ME_QUERY } from '../graphql/user/query/me';
-import { Me } from '../lib/schema-types';
 import redirect from '../lib/redirect';
+import { Me } from '../lib/schema-types';
+import { NextContextWithApollo } from '../types/NextContextWithApollo';
 
 class Login extends React.Component {
   static async getInitialProps({ apolloClient, ...ctx }: NextContextWithApollo) {
@@ -16,13 +16,15 @@ class Login extends React.Component {
     } = await apolloClient.query<Me>({ query: ME_QUERY });
     if (me) {
       redirect(ctx, '/dashboard');
+      return {};
     }
 
     return {};
   }
   render() {
     return (
-      <CustomHead title="Login">
+      <>
+        <CustomHead title="Login" />
         <div className="login-page">
           <div className="login-content">
             <Logo />
@@ -33,7 +35,7 @@ class Login extends React.Component {
             </Link>
           </div>
         </div>
-      </CustomHead>
+      </>
     );
   }
 }

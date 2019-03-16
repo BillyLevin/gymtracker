@@ -1,14 +1,11 @@
 import Logo from '../Logo';
-import Button from '../Button';
-
 import './Header.scss';
+import LogoutButton from './LogoutButton';
 
 const Header: React.FC = () => (
   <header className="header">
     <Logo />
-    <Button type="button" theme="primary">
-      Log Out
-    </Button>
+    <LogoutButton />
   </header>
 );
 

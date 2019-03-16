@@ -1,12 +1,11 @@
-import { Query, Resolver, Mutation, Arg, Ctx } from 'type-graphql';
-import { User } from '../../entity/User';
-
+import { registerSchema } from '@gym-tracker/common';
 import * as argon from 'argon2';
+import { Arg, Authorized, Ctx, Mutation, Query, Resolver } from 'type-graphql';
+import { User } from '../../entity/User';
+import { formatYupError } from '../../utils/formatYupError';
 import { MyContext } from '../types/MyContext';
 import { invalidLoginResponse } from './shared/invalidLoginResponse';
-import { registerSchema } from '@gym-tracker/common';
-import { formatYupError } from '../../utils/formatYupError';
-import { RegisterResponse, UserInput, LoginResponse } from './shared/types';
+import { LoginResponse, RegisterResponse, UserInput } from './shared/types';
 
 @Resolver(User)
 export class UserResolver {
@@ -93,5 +92,21 @@ export class UserResolver {
       user,
       errors: [],
     };
+  }
+
+  @Authorized()
+  @Mutation(() => Boolean)
+  async logout(@Ctx() ctx: MyContext) {
+    return new Promise((res, rej) =>
+      ctx.req.session!.destroy(err => {
+        if (err) {
+          console.log(err);
+          return rej(false);
+        }
+
+        ctx.res.clearCookie('qid');
+        return res(true);
+      }),
+    );
   }
 }
