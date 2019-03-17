@@ -1,5 +1,6 @@
 import { registerSchema } from '@gym-tracker/common';
 import { Field, Formik } from 'formik';
+import Link from 'next/link';
 import Router from 'next/router';
 import { Mutation } from 'react-apollo';
 import { REGISTER_MUTATION } from '../../graphql/user/mutation/register';
@@ -53,6 +54,10 @@ const RegisterForm: React.FC = () => (
             <Button type="submit" theme="primary" disabled={isSubmitting}>
               Sign Up
             </Button>
+
+            <Link href="/login">
+              <a>Already have an account? Login here</a>
+            </Link>
           </form>
         )}
       </Formik>

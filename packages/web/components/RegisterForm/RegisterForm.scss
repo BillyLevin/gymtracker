@@ -1,9 +1,27 @@
 @import '../../styles/abstracts/variables';
 
 .register-form {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
   width: 100%;
 
   .btn {
     width: 100%;
+  }
+
+  a:link,
+  a:visited {
+    color: $primary;
+    font-size: 1.4rem;
+    margin-top: 1.6rem;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  a:hover,
+  a:focus,
+  a:active {
+    text-decoration: underline;
   }
 }
