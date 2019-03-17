@@ -1,12 +1,13 @@
-import { Mutation } from 'react-apollo';
-import { RegisterMutation, RegisterMutationVariables } from '../../lib/schema-types';
-import { REGISTER_MUTATION } from '../../graphql/user/mutation/register';
-import { Formik, Field } from 'formik';
 import { registerSchema } from '@gym-tracker/common';
-import InputGroup from '../InputGroup';
-import Button from '../Button';
+import { Field, Formik } from 'formik';
 import Router from 'next/router';
+import { Mutation } from 'react-apollo';
+import { REGISTER_MUTATION } from '../../graphql/user/mutation/register';
+import { RegisterMutation, RegisterMutationVariables } from '../../lib/schema-types';
 import { normalizeErrors } from '../../utils/normalizeErrors';
+import Button from '../Button';
+import InputGroup from '../InputGroup';
+import './RegisterForm.scss';
 
 interface FormValues {
   email: string;
@@ -35,7 +36,7 @@ const RegisterForm: React.FC = () => (
         }}
       >
         {({ handleSubmit, isSubmitting }) => (
-          <form onSubmit={handleSubmit} className="form form--primary">
+          <form onSubmit={handleSubmit} className="register-form">
             <Field
               name="email"
               label="Email"
