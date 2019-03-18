@@ -49,6 +49,9 @@ const Routine: React.FC<Props> = ({ name, day, routineId }) => (
             <div className="routine-detail">
               Routine: <span>Rest Day</span>
             </div>
+            <Link href={`/create-routine`}>
+              <a className="routine-link">Add Routine</a>
+            </Link>
           </h3>
         </div>
       );

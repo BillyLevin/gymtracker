@@ -7,3 +7,4 @@ temp/
 dist
 .next
 .env
+yarn-error.log

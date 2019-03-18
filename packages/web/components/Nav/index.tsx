@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { FaAppleAlt, FaDumbbell } from 'react-icons/fa';
 import './Nav.scss';
 
@@ -9,38 +10,28 @@ const Nav: React.FC = () => (
         <FaDumbbell />
       </div>
       <li className="nav__item">
-        <a href="#" className="nav__link">
-          Exercises
-        </a>
+        <Link href="/exercises">
+          <a className="nav__link">Exercises</a>
+        </Link>
       </li>
       <li className="nav__item">
-        <a href="#" className="nav__link">
-          Routines
-        </a>
-      </li>
-      <li className="nav__item">
-        <a href="#" className="nav__link">
-          Today
-        </a>
+        <Link href="/routines">
+          <a className="nav__link">Routines</a>
+        </Link>
       </li>
       <div className="nav__header">
         <h3>Diet </h3>
         <FaAppleAlt />
       </div>
       <li className="nav__item">
-        <a href="#" className="nav__link">
-          Create Meal
-        </a>
+        <Link href="/create-meal">
+          <a className="nav__link">Create Meal</a>
+        </Link>
       </li>
       <li className="nav__item">
-        <a href="#" className="nav__link">
-          Meals
-        </a>
-      </li>
-      <li className="nav__item">
-        <a href="#" className="nav__link">
-          Today
-        </a>
+        <Link href="/meals">
+          <a className="nav__link">Meals</a>
+        </Link>
       </li>
     </ul>
   </nav>

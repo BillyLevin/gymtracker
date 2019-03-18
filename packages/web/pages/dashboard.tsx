@@ -1,10 +1,14 @@
-import DashboardLayout from '../components/DashboardLayout';
+import React from 'react';
 import DashboardHero from '../components/DashboardHero';
+import DashboardLayout from '../components/DashboardLayout';
 import DashboardOptions from '../components/DashboardOptions';
+import { withAuth } from '../hocs/withAuth';
 
-export default () => (
+const DashboardPage: React.FC = () => (
   <DashboardLayout title="Dashboard">
     <DashboardHero welcomeMessage="Welcome Back to GymTracker" />
     <DashboardOptions />
   </DashboardLayout>
 );
+
+export default withAuth(DashboardPage);
