@@ -1,3 +1,4 @@
+// COLORS
 $primary: #40e0d0;
 $black: #292929;
 $white: #fff;
@@ -7,3 +8,9 @@ $light-grey: #e0e0e0;
 $mid-grey: #6e6e6e;
 $dark-grey: #464646;
 $lighter-grey: #f7f7f7;
+
+// BREAKPOINTS
+$bp-large: 75em; // 1200px / 16 = 75em
+$bp-medium: 56.25em; // 900px / 16 = 56.25em
+$bp-small: 37.5em; // 600px / 16 = 37.5em
+$bp-smallest: 31.25em; // 500px / 16 = 31.25em

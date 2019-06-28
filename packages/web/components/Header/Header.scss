@@ -1,20 +1,24 @@
-@import '../../styles//abstracts/variables';
+@import '../../styles/abstracts/variables';
 
 .header {
+  align-items: center;
   background-color: darken($primary, 10);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 1.6rem 3.2rem;
   height: 10rem;
+  justify-content: center;
+  padding: 1.6rem 3.2rem;
   position: fixed;
   width: 100%;
   z-index: 10;
 
   .logo {
-    width: 12rem;
     height: auto;
     margin-left: auto;
+    width: 12rem;
+
+    @media only screen and (max-width: $bp-large) {
+      margin-left: 0;
+    }
 
     g {
       fill: $white;
@@ -22,10 +26,10 @@
   }
 
   .btn {
-    margin-left: auto;
     background-color: $white;
-    color: $primary;
     border: 0;
+    color: $primary;
+    margin-left: auto;
 
     &:focus,
     &:active,
