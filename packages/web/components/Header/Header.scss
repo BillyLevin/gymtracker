@@ -15,14 +15,17 @@
     padding: 0.8rem 1.6rem;
   }
 
-  .logo {
-    height: auto;
+  a {
     margin-left: auto;
-    width: 12rem;
 
     @media only screen and (max-width: $bp-large) {
       margin-left: 0;
     }
+  }
+
+  .logo {
+    height: auto;
+    width: 12rem;
 
     g {
       fill: $white;

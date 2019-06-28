@@ -1,10 +1,16 @@
+import Link from 'next/link';
 import Logo from '../Logo';
 import './Header.scss';
 import LogoutButton from './LogoutButton';
 
 const Header: React.FC = () => (
   <header className="header">
-    <Logo />
+    <Link href="/">
+      <a>
+        <Logo />
+      </a>
+    </Link>
+
     <LogoutButton />
   </header>
 );
