@@ -14,7 +14,7 @@ const LogoutButton: React.FC = () => (
         onClick={async () => {
           const response = await mutate();
           if (response && response.data && response.data.logout) {
-            Router.push('/');
+            Router.push('/error', '/');
           }
         }}
       >

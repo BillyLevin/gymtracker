@@ -15,6 +15,7 @@
     "typescript": "^3.2.1"
   },
   "dependencies": {
+    "@gym-tracker/common": "1.0.0",
     "apollo-server-express": "^2.2.6",
     "argon2": "^0.19.3",
     "connect-redis": "^3.4.0",
@@ -26,8 +27,7 @@
     "pg": "^7.3.0",
     "reflect-metadata": "^0.1.10",
     "type-graphql": "^0.15.0",
-    "typeorm": "0.2.9",
-    "@gym-tracker/common": "1.0.0"
+    "typeorm": "0.2.9"
   },
   "scripts": {
     "start": "nodemon --exec ts-node src/index.ts"

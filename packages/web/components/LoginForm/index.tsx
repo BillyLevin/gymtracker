@@ -33,7 +33,7 @@ const LoginForm: React.FC = () => (
             setSubmitting(false);
             return setErrors(normalizeErrors(response.data.login.errors));
           } else {
-            Router.push('/dashboard');
+            Router.push('/error', '/dashboard');
           }
         }}
       >

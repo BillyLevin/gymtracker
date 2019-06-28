@@ -18,7 +18,11 @@ const SESSION_SECRET: string = 'fijfijfijfiiidddvgdyhnjiicdisjcfijdescofjo';
 const RedisStore = connectRedis(session as any);
 
 const startServer = async () => {
-  await createTypeormConnection();
+  try {
+    await createTypeormConnection();
+  } catch (e) {
+    console.log(e);
+  }
 
   const app = express();
 
