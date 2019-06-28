@@ -6,12 +6,30 @@
   margin: 0 1.6rem 3.2rem;
   width: 100%;
 
+  @media only screen and (max-width: $bp-large) {
+    margin: 0;
+    margin-bottom: 1.6rem;
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 1.4rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 1.2rem;
+  }
+
   .routine-day {
     background-color: $primary;
     color: $white;
     font-weight: 400;
     margin: 0;
     padding: 1.6rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.4rem;
+      padding: 0.8rem;
+    }
   }
 
   .routine-info {
@@ -19,6 +37,12 @@
     font-weight: 400;
     margin: 0;
     padding: 1.6rem;
+    text-align: center;
+
+    @media only screen and (max-width: $bp-small) {
+      align-items: center;
+      padding: 0.8rem;
+    }
 
     span {
       color: $primary;
@@ -41,6 +65,14 @@
     margin-left: auto;
     text-decoration: none;
     transition: all 0.2s;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 1.4rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.2rem;
+    }
   }
 
   .routine-link:active,

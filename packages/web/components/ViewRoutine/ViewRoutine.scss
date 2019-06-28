@@ -9,18 +9,39 @@
     border-collapse: collapse;
     margin-bottom: 4rem;
     width: 100%;
+
+    @media only screen and (max-width: $bp-medium) {
+      margin-bottom: 3.2rem;
+    }
   }
 
   th {
     color: $primary;
     font-size: 2.4rem;
     font-weight: 400;
+
+    @media only screen and (max-width: $bp-medium) {
+      font-size: 2rem;
+    }
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.6rem;
+    }
+
+    @media only screen and (max-width: $bp-smallest) {
+      font-size: 1.4rem;
+    }
   }
 
   td,
   th {
     padding: 1.6rem;
     text-align: center;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.2rem;
+      padding: 0.8rem;
+    }
   }
 
   tr.routine-exercise:nth-child(odd) {
@@ -37,23 +58,60 @@
     height: auto;
     margin: 3.2rem 0;
     width: 15rem;
+
+    @media only screen and (max-width: $bp-small) {
+      margin: 1.6rem 0;
+      width: 7.5rem;
+    }
   }
 
   .buttons-container {
     display: flex;
     justify-content: space-between;
     width: 100%;
+
+    @media only screen and (max-width: $bp-medium) {
+      align-items: center;
+      flex-direction: column;
+    }
+
+    button {
+      @media only screen and (max-width: $bp-medium) {
+        margin-bottom: 0.8rem;
+        width: 100%;
+      }
+    }
   }
 
   .btn:first-child span {
     margin-right: 1.6rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      margin-right: 0.8rem;
+    }
   }
 
   .btn:last-child span {
     margin-left: 1.6rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      margin-left: 0.8rem;
+    }
   }
 
   .btn:last-child {
     margin-left: 1.6rem;
+
+    @media only screen and (max-width: $bp-medium) {
+      margin-left: 0;
+    }
+  }
+
+  .right-buttons {
+    @media only screen and (max-width: $bp-medium) {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
   }
 }
