@@ -5,13 +5,7 @@ import React from 'react';
 import { Mutation, Query } from 'react-apollo';
 import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
 import { UPDATE_ROUTINE_MUTATION } from '../../graphql/routine/mutation/updateRoutine';
-import {
-  GetExercises,
-  GetExercises_getExercises_exercises,
-  GetRoutineById_getRoutineById_routine,
-  UpdateRoutine,
-  UpdateRoutineVariables,
-} from '../../lib/schema-types';
+import { GetExercises, GetExercises_getExercises_exercises, GetRoutineById_getRoutineById_routine, UpdateRoutine, UpdateRoutineVariables } from '../../lib/schema-types';
 import { normalizeErrors } from '../../utils/normalizeErrors';
 import Button from '../Button';
 import InputGroup from '../InputGroup';
@@ -46,7 +40,6 @@ const getExerciseOptions = (exercises: Exercise[]) =>
     return { label: exercise.name, value: exercise.id, exercise };
   });
 
-// TODO: GET ALL EXERCISES TO PUT AS THE OPTIONS FOR THE MULTI SELECT
 
 const EditRoutineForm: React.FC<Props> = ({ routine: { name, day, id }, exercises }) => (
   <Query<GetExercises> query={GET_EXERCISES_QUERY}>
