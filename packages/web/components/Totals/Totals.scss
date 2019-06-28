@@ -6,6 +6,13 @@
   display: flex;
   margin-right: 3.2rem;
   padding: 1.6rem;
+
+  @media only screen and (max-width: $bp-small) {
+    justify-content: center;
+    margin-bottom: 1.6rem;
+    margin-right: 0;
+    padding: 0.8rem;
+  }
 }
 
 .total {
@@ -20,10 +27,18 @@
 .total span:first-child {
   font-size: 5rem;
   margin-bottom: 0.8rem;
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 3rem;
+  }
 }
 
 .total span:nth-child(2) {
   font-size: 1.4rem;
   font-weight: 600;
   text-transform: uppercase;
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 1.2rem;
+  }
 }
