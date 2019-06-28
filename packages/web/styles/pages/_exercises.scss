@@ -1,24 +1,28 @@
 .exercises-content {
+  align-items: center;
   display: flex;
   flex-direction: column;
-  align-items: center;
 
-    .exercises {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 3.6rem;
-      flex: 1;
-      justify-content: center;
-      width: 100%;
-    }
+  .exercises {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 3.6rem;
+    width: 100%;
 
-    form {
-      border: 2px solid $primary;
-      padding: 1.6rem;
-      border-radius: 3px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 1.6rem 4.8rem;
+    @media only screen and (max-width: $bp-small) {
+      margin-top: 0;
     }
   }
+
+  form {
+    align-items: center;
+    border: 2px solid $primary;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    margin: 1.6rem 4.8rem;
+    padding: 1.6rem;
+  }
+}

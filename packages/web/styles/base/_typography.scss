@@ -4,6 +4,20 @@
   font-weight: 300;
   margin: 0 0 3.2rem;
   text-align: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    font-size: 4rem;
+    margin: 0 0 2.4rem;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    font-size: 2.4rem;
+    margin: 0 0 1.6rem;
+  }
+
+  @media only screen and (max-width: $bp-smallest) {
+    font-size: 2rem;
+  }
 }
 
 .subtitle {

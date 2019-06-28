@@ -2,8 +2,8 @@ import React from 'react';
 import { Query } from 'react-apollo';
 import { GET_EXERCISES_QUERY } from '../../graphql/exercise/query/getExercises';
 import { GetExercises } from '../../lib/schema-types';
-import Exercise from '../Exercise';
 import AddExerciseButton from '../AddExerciseButton';
+import Exercise from '../Exercise';
 
 const ExerciseList: React.FC = () => (
   <Query<GetExercises> query={GET_EXERCISES_QUERY}>
@@ -18,12 +18,12 @@ const ExerciseList: React.FC = () => (
         if (exercises) {
           return (
             <div className="exercises">
+              <AddExerciseButton />
               {exercises.map(({ id, name, sets, reps }) => (
                 <React.Fragment key={id}>
                   <Exercise name={name} sets={sets} reps={reps} id={id} />
                 </React.Fragment>
               ))}
-              <AddExerciseButton />
             </div>
           );
         }

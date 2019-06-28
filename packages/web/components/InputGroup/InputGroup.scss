@@ -6,16 +6,29 @@
   margin-bottom: 1.6rem;
   width: 100%;
 
+  @media only screen and (max-width: $bp-small) {
+    margin-bottom: 0.8rem;
+  }
+
   label {
-    margin-bottom: .8rem;
     color: $primary;
     font-weight: 600;
+    margin-bottom: 0.8rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.3rem;
+      margin-bottom: 0.4rem;
+    }
   }
 
   .error-message {
     color: $error;
     font-size: 1.4rem;
-    margin-top: .8rem;
     height: 1.6rem;
+    margin-top: 0.8rem;
+
+    @media only screen and (max-width: $bp-small) {
+      font-size: 1.1rem;
+    }
   }
 }
