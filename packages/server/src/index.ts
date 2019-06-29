@@ -11,9 +11,9 @@ import { MealResolver } from './modules/meal/MealResolver';
 import { RoutineResolver } from './modules/routine/RoutineResolver';
 import { UserResolver } from './modules/user/UserResolver';
 import { redis } from './redis';
+require('dotenv-safe').config();
 
-// TODO: Move to .env file
-const SESSION_SECRET: string = 'fijfijfijfiiidddvgdyhnjiicdisjcfijdescofjo';
+const SESSION_SECRET = process.env.SESSION_SECRET;
 
 const RedisStore = connectRedis(session as any);
 
@@ -31,7 +31,10 @@ const startServer = async () => {
   app.use(
     cors({
       credentials: true,
-      origin: 'http://localhost:3000',
+      origin:
+        process.env.NODE_ENV === 'production'
+          ? 'https://www.gymtracker.xyz'
+          : 'http://localhost:3000',
     }),
   );
 
@@ -54,7 +57,7 @@ const startServer = async () => {
         client: redis as any,
       }),
       name: 'qid',
-      secret: SESSION_SECRET,
+      secret: SESSION_SECRET || '',
       resave: false,
       saveUninitialized: false,
       cookie: {
