@@ -2,8 +2,10 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "module": "commonjs",
-    "outDir": ".next/production-server/",
-    "allowSyntheticDefaultImports": false
+    "outDir": ".next/production-server",
+    "allowSyntheticDefaultImports": false,
+    "noEmit": false,
+    "isolatedModules": false
   },
   "include": ["server/**/*.ts"]
 }

@@ -1,0 +1,15 @@
+gymtracker.xyz {
+  log / /etc/logs/requests.log "{combined}"
+  proxy / web:3000
+}
+
+www.gymtracker.xyz {
+  log / /etc/logs/requests.log "{combined}"
+  proxy / web:3000
+}
+
+server.gymtracker.xyz {
+  log / /etc/logs/requests.log "{combined}"
+  proxy / server:4000
+}
+
