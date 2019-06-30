@@ -12,8 +12,12 @@ export class UserResolver {
   @Query(() => User, { nullable: true })
   async me(@Ctx() ctx: MyContext) {
     const { userId } = ctx.req.session!;
+
+    console.log('### context:', ctx);
+    console.log('### req:', ctx.req);
+    console.log('### session:', ctx.req.session);
+
     if (!userId) {
-      console.log('!userId');
       return null;
     }
 
@@ -22,8 +26,6 @@ export class UserResolver {
     if (user) {
       return user;
     }
-
-    console.log('no user');
 
     return null;
   }
