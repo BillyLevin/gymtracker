@@ -29,7 +29,6 @@ services:
       - /root/gymtracker.xyz/Caddyfile:/etc/CaddyFile
       - /root/.caddy:/root/.Caddy
       - /root/logs:/etc/logs
-      - /root/goaccess/.html:/site/goaccess
     ports:
       - '80:80'
       - '443:443'
