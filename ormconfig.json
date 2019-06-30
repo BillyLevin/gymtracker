@@ -24,10 +24,10 @@
     "host": "db",
     "port": 5432,
     "database": "gym-tracker",
-    "synchronize": false,
+    "synchronize": true,
     "logging": false,
-    "entities": ["dist/entity/**/*.*"],
-    "migrations": ["dist/migration/**/*.*"],
-    "subscribers": ["dist/subscriber/**/*.*"]
+    "entities": ["dist/entity/**/*.js"],
+    "migrations": ["dist/migration/**/*.js"],
+    "subscribers": ["dist/subscriber/**/*.js"]
   }
 ]
