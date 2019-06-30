@@ -61,6 +61,8 @@ const startServer = async () => {
       resave: false,
       saveUninitialized: false,
       cookie: {
+        path: '/',
+        domain: process.env.NODE_ENV==='production'?'.gymtracker.xyz': undefined,
         httpOnly: true,
         secure: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 365 * 7,
