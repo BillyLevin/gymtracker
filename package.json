@@ -5,6 +5,10 @@
       "packages/*"
     ]
   },
+  "scripts": {
+    "build:server": "lerna run build --scope={@gym-tracker/common,@gym-tracker/server}",
+    "build:web": "lerna run build --scope={@gym-tracker/common,@gym-tracker/web}"
+  },
   "devDependencies": {
     "lerna": "^3.5.1"
   },

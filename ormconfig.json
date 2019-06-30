@@ -28,9 +28,8 @@
     "database": "gym-tracker",
     "synchronize": false,
     "logging": false,
-    "entities": ["src/entity/**/*.*"],
-    "migrations": ["src/migration/**/*.*"],
-    "subscribers": ["src/subscriber/**/*.*"],
-    "subscribersDir": "src/subscriber"
+    "entities": ["dist/entity/**/*.*"],
+    "migrations": ["dist/migration/**/*.*"],
+    "subscribers": ["dist/subscriber/**/*.*"]
   }
 ]
