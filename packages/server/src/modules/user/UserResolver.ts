@@ -13,6 +13,7 @@ export class UserResolver {
   async me(@Ctx() ctx: MyContext) {
     const { userId } = ctx.req.session!;
     if (!userId) {
+      console.log('!userId');
       return null;
     }
 
@@ -21,6 +22,8 @@ export class UserResolver {
     if (user) {
       return user;
     }
+
+    console.log('no user');
 
     return null;
   }
