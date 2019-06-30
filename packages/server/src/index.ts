@@ -32,9 +32,7 @@ const startServer = async () => {
     cors({
       credentials: true,
       origin:
-        process.env.NODE_ENV === 'production'
-          ? 'https://www.gymtracker.xyz'
-          : 'http://localhost:3000',
+        process.env.NODE_ENV === 'production' ? 'https://gymtracker.xyz' : 'http://localhost:3000',
     }),
   );
 
