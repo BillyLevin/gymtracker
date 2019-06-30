@@ -23,3 +23,25 @@ services:
     image: web
     ports:
       - '3000:3000'
+  proxy:
+    image: abiosoft/caddy:no-stats
+    volumes:
+      - /root/gymtracker/Caddyfile:/etc/Caddyfile
+      - /root/.caddy:/root/.caddy
+      - /root/logs:/etc/logs
+      - /root/goaccess/.html:/site/goaccess
+    ports:
+      - '80:80'
+      - '443:443'
+      - '7890:7890'
+    depends_on:
+      - web
+      - server
+  goaccess:
+    image: allinurl/goaccess
+    volumes:
+      - /root/gymtracker/goaccess/data/:/srv/data
+      - /root/goaccess/.html:/srv/report
+      - /root/logs:/srv/logs
+    depends_on:
+      - proxy
