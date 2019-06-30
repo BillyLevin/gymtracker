@@ -28,6 +28,10 @@ services:
     ports:
       - '80:80'
       - '443:443'
+    volumes:
+      - /root/gymtracker/Caddyfile:/etc/Caddyfile
+      - /root/.caddy:/root/.caddy
+      - /root/logs:/etc/logs
     depends_on:
       - web
       - server
