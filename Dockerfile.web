@@ -6,5 +6,5 @@ RUN npm run build:web
 
 ENV NODE_ENV=production
 EXPOSE 3000
-CMD cd ./packages/web/ && node .next/production-server/index.js
+CMD cd ./packages/web/ && node ./.next/production-server/index.js
 USER node

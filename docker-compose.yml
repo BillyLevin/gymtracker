@@ -26,9 +26,10 @@ services:
   proxy:
     image: abiosoft/caddy:no-stats
     volumes:
-      - /root/gymtracker.xyz/Caddyfile:/etc/CaddyFile
+      - /root/gymtracker/Caddyfile:/etc/CaddyFile
       - /root/.caddy:/root/.Caddy
       - /root/logs:/etc/logs
+      - /root/goaccess/.html:/site/goaccess
     ports:
       - '80:80'
       - '443:443'
@@ -36,3 +37,11 @@ services:
     depends_on:
       - web
       - server
+  goaccess:
+    image: allinurl/goaccess
+    volumes:
+      - /root/gymtracker/goaccess/data/:/srv/data
+      - /root/goaccess/.html:/srv/report
+      - /root/logs:/srv/logs
+    depends_on:
+      - proxy
