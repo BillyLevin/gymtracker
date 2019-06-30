@@ -24,8 +24,7 @@
   },
   "scripts": {
     "dev": "nodemon server/index.ts",
-    "build": "next build && tsc --project tsconfig.server.json",
-    "copyfiles": "copyfiles static/favicon.ico static .next",
+    "build": "next build && tsc --project tsconfig.server.json && copyfiles static/favicon.ico static .next",
     "start": "next start",
     "type-check": "tsc",
     "schema:download": "apollo schema:download --endpoint=http://localhost:4000/graphql",
