@@ -1,14 +1,14 @@
-import React from 'react';
+import { ApolloClient, NormalizedCacheObject } from 'apollo-boost';
 import cookie from 'cookie';
-import PropTypes from 'prop-types';
-import { getDataFromTree } from 'react-apollo';
 import Head from 'next/head';
-
+import PropTypes from 'prop-types';
+import React from 'react';
+import { getDataFromTree } from 'react-apollo';
 import initApollo from './init-apollo';
 import { isBrowser } from './isBrowser';
-import { NormalizedCacheObject, ApolloClient } from 'apollo-boost';
 
 function parseCookies(req?: any, options = {}) {
+  console.log('cookie', req.headers.cookie);
   return cookie.parse(req ? req.headers.cookie || '' : document.cookie, options);
 }
 
