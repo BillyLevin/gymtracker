@@ -47,6 +47,7 @@ function create(
 export default function initApollo(initialState: any, options: { getToken: () => string }) {
   // Make sure to create a new client for every server-side request so that data
   // isn't shared between connections (which would be bad)
+
   if (!isBrowser) {
     let fetchOptions = {};
     // If you are using a https_proxy, add fetchOptions with 'https-proxy-agent' agent instance
