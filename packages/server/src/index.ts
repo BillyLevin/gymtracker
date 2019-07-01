@@ -35,6 +35,8 @@ const startServer = async () => {
         process.env.NODE_ENV === 'production'
           ? 'https://www.gymtracker.xyz'
           : 'http://localhost:3000',
+      methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+      allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
     }),
   );
 
