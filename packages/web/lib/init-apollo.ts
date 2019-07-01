@@ -22,11 +22,16 @@ function create(initialState: any, { getToken }: { getToken: () => string }) {
 
   const authLink = setContext((_, { headers }) => {
     const token = getToken();
+
+    const newHeaders = {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    };
+
+    console.log(newHeaders);
+
     return {
-      headers: {
-        ...headers,
-        authorization: token ? `Bearer ${token}` : '',
-      },
+      headers: newHeaders,
     };
   });
 
