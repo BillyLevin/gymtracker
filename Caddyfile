@@ -1,8 +1,8 @@
-gymtracker.xyz {
-    redir https://www.gymtracker.xyz{uri}
+www.gymtracker.xyz {
+    redir https://gymtracker.xyz{uri}
 }
 
-www.gymtracker.xyz {
+gymtracker.xyz {
   log / /etc/logs/requests.log "{combined}"
   proxy / web:3000
 }

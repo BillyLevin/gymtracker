@@ -13,8 +13,6 @@ import { UserResolver } from './modules/user/UserResolver';
 import { redis } from './redis';
 require('dotenv-safe').config();
 
-const SESSION_SECRET = process.env.SESSION_SECRET;
-
 const RedisStore = connectRedis(session as any);
 
 const startServer = async () => {
@@ -32,9 +30,7 @@ const startServer = async () => {
     cors({
       credentials: true,
       origin:
-        process.env.NODE_ENV === 'production'
-          ? 'https://www.gymtracker.xyz'
-          : 'http://localhost:3000',
+        process.env.NODE_ENV === 'production' ? 'https://gymtracker.xyz' : 'http://localhost:3000',
       methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
       allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
     }),
@@ -59,7 +55,7 @@ const startServer = async () => {
         client: redis as any,
       }),
       name: 'qid',
-      secret: SESSION_SECRET || '',
+      secret: process.env.SESSION_SECRET || '',
       resave: false,
       saveUninitialized: false,
       cookie: {
