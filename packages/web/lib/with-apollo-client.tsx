@@ -8,7 +8,7 @@ import initApollo from './init-apollo';
 import { isBrowser } from './isBrowser';
 
 function parseCookies(req?: any, options = {}) {
-  console.log('cookie', req.headers.cookie);
+  console.log('headers frontend', req.headers);
   return cookie.parse(req ? req.headers.cookie || '' : document.cookie, options);
 }
 
