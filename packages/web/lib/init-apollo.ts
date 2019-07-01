@@ -17,7 +17,7 @@ function create(initialState: any, { getToken }: { getToken: () => string }) {
       process.env.NODE_ENV === 'production'
         ? 'https://server.gymtracker.xyz/graphql'
         : 'http://localhost:4000/graphql',
-    credentials: 'include',
+    credentials: process.env.NODE_ENV === 'production' ? 'same-origin' : 'include',
   });
 
   const authLink = setContext((_, { headers }) => {
