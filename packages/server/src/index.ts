@@ -40,7 +40,6 @@ const startServer = async () => {
 
   app.use((req, _, next) => {
     const authorization = req.headers.authorization;
-    console.log(req.headers);
 
     if (authorization) {
       try {
@@ -63,7 +62,6 @@ const startServer = async () => {
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        // secure: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 365 * 7,
       },
     }),
