@@ -45,7 +45,10 @@ const startServer = async () => {
       try {
         const qid = authorization.split(' ')[1];
         req.headers.cookie = `qid=${qid}`;
-      } catch (_) {}
+        console.log(req.headers.cookie);
+      } catch (e) {
+        console.log(e);
+      }
     }
 
     return next();
@@ -62,8 +65,7 @@ const startServer = async () => {
       saveUninitialized: false,
       cookie: {
         httpOnly: true,
-        // secure: process.env.NODE_ENV === 'production',
-        secure: false,
+        secure: process.env.NODE_ENV === 'production',
         maxAge: 1000 * 60 * 60 * 24 * 365 * 7,
       },
     }),
