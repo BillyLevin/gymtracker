@@ -20,19 +20,19 @@ function create(initialState: any, { getToken }: { getToken: () => string }) {
     credentials: 'include',
   });
 
-  const authLink = setContext((_, { headers }) => {
+  const authLink = setContext(blob => {
     const token = getToken();
 
-    const newHeaders = {
-      ...headers,
-      authorization: token ? `Bearer ${token}` : '',
-    };
+    console.log(blob, 'token:', token);
 
-    console.log(newHeaders);
+    // const newHeaders = {
+    //   ...headers,
+    //   authorization: token ? `Bearer ${token}` : '',
+    // };
 
-    return {
-      headers: newHeaders,
-    };
+    // console.log(newHeaders);
+
+    return {};
   });
 
   // Check out https://github.com/zeit/next.js/pull/4611 if you want to use the AWSAppSyncClient
