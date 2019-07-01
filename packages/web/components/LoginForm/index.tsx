@@ -1,5 +1,6 @@
 import { loginSchema } from '@gym-tracker/common';
 import { Field, Formik } from 'formik';
+import Router from 'next/router';
 import { Mutation } from 'react-apollo';
 import { LOGIN_MUTATION } from '../../graphql/user/mutation/login';
 import { LoginMutation, LoginMutationVariables } from '../../lib/schema-types';
@@ -31,10 +32,9 @@ const LoginForm: React.FC = () => (
           ) {
             setSubmitting(false);
             return setErrors(normalizeErrors(response.data.login.errors));
+          } else {
+            Router.push('/error', '/dashboard');
           }
-          // } else {
-          //   // Router.push('/error', '/dashboard');
-          // }
         }}
       >
         {({ handleSubmit, isSubmitting }) => (
