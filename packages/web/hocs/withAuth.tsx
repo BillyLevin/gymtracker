@@ -8,8 +8,6 @@ export const withAuth = (Page: any, redirectPath = '/login') => {
   WithAuth.getInitialProps = async ({ apolloClient, ...ctx }: NextContextWithApollo) => {
     const { me } = await checkLoggedIn(apolloClient);
 
-    console.log('me:', me);
-
     if (!me) {
       redirect(ctx, redirectPath);
       return {};

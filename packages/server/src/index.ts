@@ -40,6 +40,7 @@ const startServer = async () => {
 
   app.use((req, _, next) => {
     const authorization = req.headers.authorization;
+    console.log('authorization:', authorization);
 
     if (authorization) {
       try {
