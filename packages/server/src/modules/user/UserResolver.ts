@@ -13,10 +13,6 @@ export class UserResolver {
   async me(@Ctx() ctx: MyContext) {
     const { userId } = ctx.req.session!;
 
-    console.log('### context:', ctx);
-    console.log('### req:', ctx.req);
-    console.log('### session:', ctx.req.session);
-
     if (!userId) {
       return null;
     }
