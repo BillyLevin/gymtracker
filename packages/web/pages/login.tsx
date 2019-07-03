@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React from 'react';
-import Button from '../components/Button';
 import CustomHead from '../components/CustomHead';
 import LoginForm from '../components/LoginForm';
 import Logo from '../components/Logo';
@@ -15,7 +14,7 @@ const Login: React.FC = () => (
         <LoginForm />
         <span className="or">OR</span>
         <Link href="/register">
-          <Button theme="secondary">Create An Account</Button>
+          <a className="btn btn--secondary">Create An Account</a>
         </Link>
       </div>
     </div>

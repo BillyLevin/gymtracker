@@ -9,7 +9,7 @@ const LogoutButton: React.FC = () => (
   <Mutation<Logout> mutation={LOGOUT_MUTATION}>
     {mutate => (
       <Button
-        type="button"
+        // type="button"
         theme="primary"
         onClick={async () => {
           const response = await mutate();

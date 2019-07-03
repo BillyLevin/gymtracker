@@ -86,7 +86,7 @@ class ExerciseForm extends React.Component {
                   component={InputGroup}
                   type="number"
                 />
-                <Button type="submit" theme="primary" disabled={isSubmitting}>
+                <Button theme="primary" disabled={isSubmitting}>
                   Create Exercise
                 </Button>
               </form>

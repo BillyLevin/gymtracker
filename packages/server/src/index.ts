@@ -33,8 +33,6 @@ const startServer = async () => {
         process.env.NODE_ENV === 'production'
           ? 'https://www.gymtracker.xyz'
           : 'http://localhost:3000',
-      // methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
-      // allowedHeaders: ['Content-Type', 'Authorization', 'Content-Length', 'X-Requested-With'],
     }),
   );
 
@@ -63,7 +61,7 @@ const startServer = async () => {
       cookie: {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 365 * 7,
-        domain: '.gymtracker.xyz',
+        domain: process.env.NODE_ENV === 'production' ? '.gymtracker.xyz' : undefined,
       },
     }),
   );

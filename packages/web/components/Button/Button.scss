@@ -1,6 +1,6 @@
 @import '../../styles/abstracts/variables';
 
-button.btn {
+.btn {
   background-color: transparent;
   border: 0;
   border: 2px solid $primary;
@@ -11,6 +11,7 @@ button.btn {
   letter-spacing: 1px;
   outline: 0;
   padding: 1.5rem 2.5rem;
+  text-decoration: none;
   text-transform: uppercase;
   transition: all 0.3s;
 

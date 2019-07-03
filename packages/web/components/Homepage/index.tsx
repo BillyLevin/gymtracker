@@ -1,6 +1,5 @@
-import Router from 'next/router';
+import Link from 'next/link';
 import * as React from 'react';
-import Button from '../Button';
 import Logo from '../Logo';
 import CallToAction from './CallToAction';
 import Features from './Features';
@@ -10,12 +9,12 @@ const Homepage: React.FC = () => (
   <>
     <header className="home-header">
       <Logo />
-      <Button theme="secondary" onClick={() => Router.push('/login')}>
-        Log In
-      </Button>
-      <Button theme="primary" onClick={() => Router.push('/register')}>
-        Sign Up
-      </Button>
+      <Link href="/login">
+        <a className="btn btn--secondary">Log In</a>
+      </Link>
+      <Link href="/register">
+        <a className="btn btn--primary">Register</a>
+      </Link>
     </header>
     <div className="home-hero">
       <h1>GymTracker</h1>
