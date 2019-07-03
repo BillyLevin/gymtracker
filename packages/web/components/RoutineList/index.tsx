@@ -1,9 +1,10 @@
 import React from 'react';
 import { Query } from 'react-apollo';
-import { GetRoutines, CreateRoutine_createRoutine_routine } from '../../lib/schema-types';
-import { GET_ROUTINES_QUERY } from '../../graphql/routine/query/getRoutines';
-import Routine from '../Routine';
 import uuidv4 from 'uuid/v4';
+import { GET_ROUTINES_QUERY } from '../../graphql/routine/query/getRoutines';
+import { CreateRoutine_createRoutine_routine, GetRoutines } from '../../lib/schema-types';
+import Routine from '../Routine';
+import Spinner from '../Spinner';
 
 const days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
@@ -24,7 +25,7 @@ const RoutineList: React.FC = () => (
   <Query<GetRoutines> query={GET_ROUTINES_QUERY}>
     {({ data, loading }) => {
       if (loading) {
-        return null;
+        return <Spinner />;
       }
 
       if (data && data.getRoutines) {
