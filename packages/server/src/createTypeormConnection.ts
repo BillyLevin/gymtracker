@@ -6,12 +6,18 @@ export const createTypeormConnection = async () => {
   while (retries) {
     try {
       const config = await getConnectionOptions(process.env.NODE_ENV);
-      const secureConfig = {
+      const secureConfig: any = process.env.NODE_ENV !== 'production' ? ({
         ...config,
         name: 'default',
-        username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-      };
+        username: process.env.DB_USERNAME || postgres,
+        password: process.env.DB_PASSWORD || postgres,
+      }) : ({
+        ...config,
+        name: 'default',
+        url: process.env.DATABASE_URL as string,
+        username: process.env.DB_USERNAME || postgres,
+        password: process.env.DB_PASSWORD || postgres,
+      });
       return createConnection(secureConfig);
     } catch (err) {
       console.log(err);
