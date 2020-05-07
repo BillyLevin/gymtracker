@@ -22,8 +22,6 @@
     "name": "production",
     "type": "postgres",
     "host": "db",
-    "username": "postgres",
-    "password": "postgres",
     "port": 5432,
     "database": "gym-tracker",
     "synchronize": true,
