@@ -1,6 +1,11 @@
 # GymTracker
 
-Meal and exercise routine planning app.
+Meal and exercise routine planning app. Live at [gymtracker.xyz](https://www.gymtracker.xyz).
+
+## Demo account
+
+- Username: test@test.com
+- Password: testtest
 
 ## Tech Stack
 
