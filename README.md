@@ -4,8 +4,8 @@ Meal and exercise routine planning app. Live at [gymtracker.xyz](https://www.gym
 
 ## Demo account
 
-- Username: test@test.com
-- Password: testtest
+- Username: demo@demo.com
+- Password: demodemo
 
 ## Tech Stack
 
